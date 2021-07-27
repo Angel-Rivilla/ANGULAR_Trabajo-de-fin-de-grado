@@ -2,6 +2,8 @@ import {getRepository} from "typeorm";
 import {Request, Response} from "express";
 import {User} from "../entity/User";
 import {validate} from "class-validator";
+import * as jwt from 'jsonwebtoken';
+import config from '../config/config';
 
 export class UserController {
     static getAll = async (req: Request, res: Response) => {
@@ -55,6 +57,33 @@ export class UserController {
             return res.status(409).json({message: 'Username already exist!'});
         }
         res.send('User created');
+    };
+
+    static registerUser = async (req: Request, res: Response) => {
+        const {username, password} = req.body;
+        const user= new User();
+
+        user.username = username;
+        user.password = password;
+        user.role = 'reader';
+
+        const validationOpt = { validationError: { target: false, value: false }};
+        const errors = await validate(user, validationOpt);
+        if(errors.length > 0){
+            return res.status(400).json(errors);
+        }
+
+        const userRepository = getRepository(User);
+        try{
+            user.hashPassword();
+            await userRepository.save(user);
+        }
+        catch(err){
+            return res.status(409).json({message: 'Username already exist!'});
+        }
+
+        const token = jwt.sign({userId: user.id, username: user.username}, config.jwtSecret, { expiresIn: '1h'});
+        res.json({message: 'OK', token});
     };
 
     static editUser = async (req: Request, res: Response) => {

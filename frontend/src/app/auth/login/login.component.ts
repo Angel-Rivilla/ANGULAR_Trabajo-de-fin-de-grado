@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
 
   onLogin(): void {
     const formValue = this.loginForm.value;
+    console.log(formValue);
     this.authSvc.login(formValue).subscribe(res => {
       if(res){
         this.router.navigate(['']);

@@ -11,6 +11,8 @@ router.get('/:id', [checkJwt, checkRole(['admin'])], UserController.getById);
 
 router.post('/', [checkJwt, checkRole(['admin'])], UserController.newUser);
 
+router.post('/register', UserController.registerUser);
+
 router.patch('/:id', [checkJwt, checkRole(['admin'])], UserController.editUser);
 
 router.delete('/:id', [checkJwt, checkRole(['admin'])], UserController.deleteUser);

@@ -35,6 +35,18 @@ export class AuthService {
     );
   }
 
+  register(authData: UserI){
+    return this.http.post<UserResponseI>(`${environment.API_URL}/users/register`, authData)
+      .pipe(map((res:UserResponseI) => {
+        this.saveToken(res.token);
+        this.loggedIn.next(true);
+        this.loged = true;
+        return res;
+      }),
+      catchError((err) => this.handlerError(err))
+    );
+  }
+
   logout(): void{
     localStorage.removeItem('token');
     this.loggedIn.next(false);

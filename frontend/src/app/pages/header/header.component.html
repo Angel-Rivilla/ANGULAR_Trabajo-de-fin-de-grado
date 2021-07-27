@@ -6,22 +6,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
+        <li *ngIf = "!authSvc.loged" class="nav-item">
           <a class="nav-link" [routerLink]="'/login'" routerLinkActive="active">
             <i class="fas fa-sign-in-alt"></i>
             Login
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active">
+        <li *ngIf = "authSvc.loged" class="nav-item">
+          <a type= "button" (click) = "onLogout()" class="nav-link" routerLinkActive="active">
             <i class="fas fa-sign-in-alt"></i>
             Logout
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="'/admin'" routerLinkActive="active">
-            <i class="fas fa-sign-in-alt"></i>
-            Admin
           </a>
         </li>
       </ul>

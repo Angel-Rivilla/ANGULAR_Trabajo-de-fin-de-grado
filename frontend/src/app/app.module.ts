@@ -9,6 +9,8 @@ import { HeaderComponent } from './pages/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './pages/home/home.component';
 
 
 @NgModule({
@@ -16,14 +18,16 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

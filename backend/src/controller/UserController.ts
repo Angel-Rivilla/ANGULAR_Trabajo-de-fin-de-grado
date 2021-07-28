@@ -56,7 +56,7 @@ export class UserController {
         catch(err){
             return res.status(409).json({message: 'Username already exist!'});
         }
-        res.send('User created');
+        res.status(201).json({message: 'User created'});
     };
 
     static registerUser = async (req: Request, res: Response) => {

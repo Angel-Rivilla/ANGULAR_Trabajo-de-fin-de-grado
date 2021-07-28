@@ -11,6 +11,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { FormsModule } from '@angular/forms';
+import { AdminService } from './services/admin.service';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -19,7 +24,9 @@ import { HomeComponent } from './pages/home/home.component';
     LoginComponent,
     RegisterComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    AdminComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
@@ -27,9 +34,13 @@ import { HomeComponent } from './pages/home/home.component';
     BrowserAnimationsModule,
     MatToolbarModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    AdminService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

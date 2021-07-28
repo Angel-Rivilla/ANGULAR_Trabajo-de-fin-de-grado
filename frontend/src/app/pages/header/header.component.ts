@@ -1,6 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
+//*ngIf = "authSvc.loged && authSvc.extraerRole == 'admin'"
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

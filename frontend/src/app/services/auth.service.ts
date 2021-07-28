@@ -14,6 +14,7 @@ const helper = new JwtHelperService();
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   loged: boolean = false;
+  extraerRole: string = "";
 
   constructor(private http: HttpClient){
     this.checkToken();
@@ -27,6 +28,8 @@ export class AuthService {
     return this.http.post<UserResponseI>(`${environment.API_URL}/auth/login`, authData)
       .pipe(map((res:UserResponseI) => {
         this.saveToken(res.token);
+        this.saveRole(res.role);
+        this.extraerRole=res.role;
         this.loggedIn.next(true);
         this.loged = true;
         return res;
@@ -39,6 +42,8 @@ export class AuthService {
     return this.http.post<UserResponseI>(`${environment.API_URL}/users/register`, authData)
       .pipe(map((res:UserResponseI) => {
         this.saveToken(res.token);
+        this.saveRole(res.role);
+        this.extraerRole=res.role;
         this.loggedIn.next(true);
         this.loged = true;
         return res;
@@ -66,6 +71,11 @@ export class AuthService {
       }
   }
 
+
+  private saveRole(role: string): void{
+    localStorage.setItem('role', role);
+  }
+
   private saveToken(token: string): void{
     localStorage.setItem('token', token);
   }
@@ -80,3 +90,5 @@ export class AuthService {
     return throwError(errorMessage);
   }
 }
+
+

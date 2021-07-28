@@ -14,14 +14,15 @@ export class LoginComponent implements OnInit {
     username: [''],
     password: [''],
   })
+  
   constructor(private authSvc: AuthService, 
               private fb: FormBuilder,
               private router: Router) { }
 
   ngOnInit(): void {
-   
+    
   }
-
+  
   onLogin(): void {
     const formValue = this.loginForm.value;
     console.log(formValue);

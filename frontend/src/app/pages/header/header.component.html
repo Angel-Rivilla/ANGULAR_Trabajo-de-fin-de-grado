@@ -18,6 +18,12 @@
             LogOut
           </a>
         </li>
+        <li *ngIf = "authSvc.loged && authSvc.extraerRole == 'admin'" [routerLink]="'/admin'" class="nav-item">
+          <a type= "button" class="nav-link" routerLinkActive="active">
+            <i class="fas fa-unlock-alt"></i>
+            Admin
+          </a>
+        </li>
       </ul>
     </div>
   </div>

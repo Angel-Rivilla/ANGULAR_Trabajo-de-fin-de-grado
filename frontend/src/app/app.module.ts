@@ -16,7 +16,10 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { FormsModule } from '@angular/forms';
 import { AdminService } from './services/admin.service';
 import { AuthService } from './services/auth.service';
-
+import { ListUserComponent } from './pages/list-user/list-user.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { FooterComponent } from './pages/footer/footer.component';
+import { SidebarComponent } from './pages/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { AuthService } from './services/auth.service';
     HeaderComponent,
     HomeComponent,
     AdminComponent,
-    EditUserComponent
+    EditUserComponent,
+    ListUserComponent,
+    FooterComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +41,8 @@ import { AuthService } from './services/auth.service';
     MatToolbarModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatSidenavModule
   ],
   providers: [
     AdminService,

@@ -1,6 +1,14 @@
-<app-header></app-header>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side">
+    <mat-toolbar>Tools Admin</mat-toolbar>
+    <app-sidebar></app-sidebar>
+  </mat-sidenav>
 
-<div style ="margin-top: 90px" class="container p-4">
-  <router-outlet></router-outlet>
-</div>
-
+  <mat-sidenav-content>
+    <app-header (toggleSidenav)="sidenav.toggle()"></app-header>
+    <div style ="margin-top: 90px" class="container p-4">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

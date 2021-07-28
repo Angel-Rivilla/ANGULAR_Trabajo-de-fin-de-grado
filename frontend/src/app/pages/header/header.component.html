@@ -1,5 +1,5 @@
 <nav [ngClass]= "!toggleAdmin ? 'navbar navbar-expand-lg navbar-light bg-light fixed-top': 'navbar navbar-expand-lg navbar-light bg-light'">
-  <div class="container">
+  <div class="container-fluid">
     <ng-container *ngIf="!toggleAdmin; else viewAdmin">
       <a class="navbar-brand" routerLink="/">ngMysql Users</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,8 +33,8 @@
 </nav>
 
 <ng-template #viewAdmin>
-  <i type="button" (click)="onToggleSidenav()" class="fas fa-bars"></i>
-   <a class="navbar-brand" routerLink="/">Panel Admin</a>
+   <div style="margin-left: 5px"> <i type="button" (click)="onToggleSidenav()" style = "margin-left: 4px" class="fas fa-bars fa-1x"></i></div>
+   <a class="navbar-brand" routerLink="/admin"> Admin Panel </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

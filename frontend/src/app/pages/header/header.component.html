@@ -1,4 +1,4 @@
-<nav [ngClass]= "!toggleAdmin ? 'navbar navbar-expand-lg navbar-light bg-light fixed-top': 'navbar navbar-expand-lg navbar-light bg-light'">
+<nav [ngClass]= "!toggleAdmin ? 'navbar navbar-expand-lg navbar-light bg-light': 'navbar navbar-expand-lg navbar-light bg-light'">
   <div class="container-fluid">
     <ng-container *ngIf="!toggleAdmin; else viewAdmin">
       <a class="navbar-brand" routerLink="/">ngMysql Users</a>
@@ -19,7 +19,7 @@
               LogOut
             </a>
           </li>
-          <li *ngIf = "authSvc.loged && authSvc.extraerRole == 'admin'" (click)="onToggleSidenav()" [routerLink]="'/admin'" class="nav-item">
+          <li (click)="onToggleSidenav()" [routerLink]="'/admin'" class="nav-item">
             <a type= "button" class="nav-link" routerLinkActive="active">
               <i *ngIf="toggleAdmin" class="fas fa-unlock-alt"></i>
               <i *ngIf="!toggleAdmin" class="fas fa-lock"></i>

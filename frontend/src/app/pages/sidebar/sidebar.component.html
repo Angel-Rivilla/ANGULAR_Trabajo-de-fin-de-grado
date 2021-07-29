@@ -1,1 +1,20 @@
-<p>sidebar works!</p>
+<div>
+    <div id="sidebar-container">
+        <button class="btn-primary form-control" (click)="openUsers = !openUsers">
+            <i class="far fa-user"></i>
+            <span style= "margin-left: 5px; margin-right: 6.1vw">Users</span>
+            <i *ngIf = "!openUsers" class="fas fa-sort-down"></i>
+            <i *ngIf = "openUsers" class="fas fa-sort-up "></i>
+        </button>
+
+        <button *ngIf = "openUsers" class="btn-primary form-control" [routerLink] ="'/admin/user/list'">
+            <i class="fas fa-users"></i>
+            <span style= "margin-left: 5px">List Users</span>
+        </button>
+
+        <button *ngIf = "openUsers" class="btn-primary form-control" [routerLink] ="'/admin/user/add'">
+            <i class="fas fa-user-plus"></i>
+            <span style= "margin-left: 5px">Add Users</span>
+        </button>
+    </div>
+</div>

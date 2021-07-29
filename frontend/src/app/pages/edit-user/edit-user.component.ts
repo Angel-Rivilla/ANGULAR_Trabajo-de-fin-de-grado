@@ -2,6 +2,7 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserBD } from 'src/app/interface/user';
 import { AdminService } from 'src/app/services/admin.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -23,7 +24,8 @@ export class EditUserComponent implements OnInit {
 
   edit: boolean = false;
 
-  constructor(private adminService: AdminService, 
+  constructor(private adminService: AdminService,
+              private authService: AuthService, 
               private router: Router, 
               private activedRoute: ActivatedRoute) { }
 

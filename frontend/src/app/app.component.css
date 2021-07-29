@@ -1,11 +1,14 @@
 mat-sidenav {
     width: 200px;
+    height: 100vw;
 }
 
 mat-sidenav-content {
     background-color: white;
+
 }
 
 mat-sidenav-container {
     height: 100%;
 }
+

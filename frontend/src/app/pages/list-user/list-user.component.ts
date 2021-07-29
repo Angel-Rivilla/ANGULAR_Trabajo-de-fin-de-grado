@@ -32,6 +32,7 @@ export class ListUserComponent implements OnInit {
     this.adminService.deleteUser(id).subscribe(
       res => {
         console.log(res);
+        alert(id + "borrado")
         this.getUsers();
       },
       err => console.log(err)

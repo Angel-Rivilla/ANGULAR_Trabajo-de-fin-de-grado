@@ -19,7 +19,7 @@
               LogOut
             </a>
           </li>
-          <li (click)="onToggleSidenav()" [routerLink]="'/admin'" class="nav-item">
+          <li *ngIf = "authSvc.loged && authSvc.extraerRole == 'admin'" (click)="onToggleSidenav()" [routerLink]="'/admin'" class="nav-item">
             <a type= "button" class="nav-link" routerLinkActive="active">
               <i *ngIf="toggleAdmin" class="fas fa-unlock-alt"></i>
               <i *ngIf="!toggleAdmin" class="fas fa-lock"></i>

@@ -19,7 +19,7 @@
               LogOut
             </a>
           </li>
-          <li *ngIf = "authSvc.loged && authSvc.extraerRole == 'admin'" (click)="toggleAdmin = !toggleAdmin" [routerLink]="'/admin'" class="nav-item">
+          <li *ngIf = "authSvc.loged && authSvc.extraerRole == 'admin'" (click)="onToggleSidenav()" [routerLink]="'/admin'" class="nav-item">
             <a type= "button" class="nav-link" routerLinkActive="active">
               <i *ngIf="toggleAdmin" class="fas fa-unlock-alt"></i>
               <i *ngIf="!toggleAdmin" class="fas fa-lock"></i>
@@ -33,7 +33,6 @@
 </nav>
 
 <ng-template #viewAdmin>
-   <div style="margin-left: 5px"> <i type="button" (click)="onToggleSidenav()" style = "margin-left: 4px" class="fas fa-bars fa-1x"></i></div>
    <a class="navbar-brand" routerLink="/admin"> Admin Panel </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -52,7 +51,7 @@
             LogOut
           </a>
         </li>
-        <li *ngIf = "authSvc.loged && authSvc.extraerRole == 'admin'" (click)="toggleAdmin = !toggleAdmin" [routerLink]="'/admin'" class="nav-item">
+        <li *ngIf = "authSvc.loged && authSvc.extraerRole == 'admin'" (click)="onToggleSidenav()" [routerLink]="'/admin'" class="nav-item">
           <a type= "button" class="nav-link" routerLinkActive="active">
             <i *ngIf="toggleAdmin" class="fas fa-unlock-alt"></i>
             <i *ngIf="!toggleAdmin" class="fas fa-lock"></i>

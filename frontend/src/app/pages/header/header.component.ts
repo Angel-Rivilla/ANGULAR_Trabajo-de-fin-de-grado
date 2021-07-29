@@ -3,7 +3,6 @@ import { UserBD } from 'src/app/interface/user';
 import { AuthService } from 'src/app/services/auth.service';
 
 
-//*ngIf = "authSvc.loged && authSvc.extraerRole == 'admin'"
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -29,7 +28,14 @@ export class HeaderComponent implements OnInit {
   }
 
   onToggleSidenav(): void{
-    this.toggleSidenav.emit();
+    if(this.toggleAdmin == false){
+      this.toggleSidenav.emit();
+      this.toggleAdmin = true;
+    } else {
+      this.toggleSidenav.emit();
+      this.toggleAdmin = false;
+    }
+    
   }
 
   onLogout(): void{

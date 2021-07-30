@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map} from 'rxjs/operators';
-import { UserI, UserResponseI } from '../interface/user';
+import { Roles, UserI, UserResponseI } from '../interface/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 const helper = new JwtHelperService();
 
@@ -13,10 +14,12 @@ const helper = new JwtHelperService();
 })
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
+  private role = new BehaviorSubject<Roles>('reader');
+  
   loged: boolean = false;
   extraerRole: string = "";
 
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient, private router: Router){
     this.checkToken();
   }
 
@@ -54,7 +57,9 @@ export class AuthService {
 
   logout(): void{
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
     this.loggedIn.next(false);
+    this.router.navigate(['/login']);
   }
 
   private checkToken(): void {
@@ -89,6 +94,7 @@ export class AuthService {
 
     return throwError(errorMessage);
   }
+
 }
 
 

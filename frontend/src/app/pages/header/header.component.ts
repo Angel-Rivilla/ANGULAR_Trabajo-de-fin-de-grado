@@ -1,6 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { UserBD } from 'src/app/interface/user';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 import { AuthService } from 'src/app/services/auth.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 
 @Component({
@@ -8,39 +10,43 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy{
+  isLogged = false;
   
-  toggleAdmin = false;
-
+  private subscription: Subscription = new Subscription();
+  
   @Output() toggleSidenav = new EventEmitter<void>();
 
-  constructor(public authSvc: AuthService) { }
+
+  constructor(public authSvc: AuthService, public utilsSvc: UtilsService) { }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   ngOnInit(): void {
+    this.subscription.add(
+      this.authSvc.isLogged.subscribe((res) => (this.isLogged = res))
+    );
   }
 
-  isAdmin(user: UserBD): boolean{
-    if(user.role == 'admin'){
-      return true;
-    } else {
-      return false;
-    }
-  }
 
   onToggleSidenav(): void{
-    if(this.toggleAdmin == false){
+    if(this.utilsSvc.toggleAdmin == false){
       this.toggleSidenav.emit();
-      this.toggleAdmin = true;
+      this.utilsSvc.toggleAdmin = true;
     } else {
       this.toggleSidenav.emit();
-      this.toggleAdmin = false;
+      this.utilsSvc.toggleAdmin = false;
     }
     
   }
 
   onLogout(): void{
     this.authSvc.logout();
-    this.authSvc.loged = false;
+    if(this.utilsSvc.toggleAdmin && this.authSvc.extraerRole == 'admin'){
+      this.toggleSidenav.emit();
+      this.utilsSvc.toggleAdmin = false;
+    }
   }
-
 }

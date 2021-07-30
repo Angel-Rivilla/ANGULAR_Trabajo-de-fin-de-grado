@@ -1,11 +1,11 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav mode="side">
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened">
     <mat-toolbar>Tools Admin</mat-toolbar>
     <app-sidebar></app-sidebar>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <app-header (toggleSidenav)="!sidenav.toggle()"></app-header>
+    <app-header (toggleSidenav)="sidenav.toggle()"></app-header>
     <div class="p-4">
       <router-outlet></router-outlet>
     </div>

@@ -20,6 +20,10 @@ import { ListUserComponent } from './pages/list-user/list-user.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { FooterComponent } from './pages/footer/footer.component';
 import { SidebarComponent } from './pages/sidebar/sidebar.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatListModule} from '@angular/material/list';
+import { UtilsService } from './services/utils.service';
 
 @NgModule({
   declarations: [
@@ -42,11 +46,15 @@ import { SidebarComponent } from './pages/sidebar/sidebar.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [
     AdminService,
-    AuthService
+    AuthService,
+    UtilsService
   ],
   bootstrap: [AppComponent]
 })

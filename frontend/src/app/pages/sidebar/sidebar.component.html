@@ -1,20 +1,22 @@
-<div>
-    <div id="sidebar-container">
-        <button class="btn-primary form-control" (click)="openUsers = !openUsers">
-            <i class="far fa-user"></i>
-            <span style= "margin-left: 5px; margin-right: 6.1vw">Users</span>
-            <i *ngIf = "!openUsers" class="fas fa-sort-down"></i>
-            <i *ngIf = "openUsers" class="fas fa-sort-up "></i>
-        </button>
-
-        <button *ngIf = "openUsers" class="btn-primary form-control" [routerLink] ="'/admin/user/list'">
-            <i class="fas fa-users"></i>
-            <span style= "margin-left: 5px">List Users</span>
-        </button>
-
-        <button *ngIf = "openUsers" class="btn-primary form-control" [routerLink] ="'/admin/user/add'">
-            <i class="fas fa-user-plus"></i>
-            <span style= "margin-left: 5px">Add Users</span>
-        </button>
-    </div>
-</div>
+<mat-nav-list>
+    <a mat-list-item routerLink="/admin">
+        <mat-icon>insert_chart_outlined</mat-icon>
+        <span class="nav-link">Dashboard</span>
+    </a>
+    <a mat-list-item routerLink="/admin/users">
+        <mat-icon>people</mat-icon>
+        <span class="nav-link">Usuarios</span>
+    </a>
+    <a mat-list-item>
+        <mat-icon>lunch_dining</mat-icon>
+        <span class="nav-link">Servicios</span>
+    </a>
+    <a mat-list-item>
+        <mat-icon>storefront</mat-icon>
+        <span class="nav-link">Productos</span>
+    </a>
+    <a mat-list-item (click)="onExit()">
+        <mat-icon>logout</mat-icon>
+        <span class="nav-link">Salir</span>
+    </a>
+</mat-nav-list>

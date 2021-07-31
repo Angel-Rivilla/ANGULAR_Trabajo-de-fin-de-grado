@@ -10,7 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ListUserComponent } from './pages/list-user/list-user.component';
 
 const routes: Routes = [
-  {path:'', redirectTo:'/', pathMatch: 'full'},
+  {path: '', redirectTo:'/', pathMatch: 'full'},
   {path: 'notFound', loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule) },
   {path: 'register', component: RegisterComponent},
   {path: 'login', canActivate: [CheckLoginGuard] , component: LoginComponent},

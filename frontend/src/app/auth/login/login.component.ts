@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       message = 'Not a valid email.';
     } else if(this.loginForm.get(field)?.hasError('minlength')){
       const minLength = this.loginForm.get(field)?.errors?.minlength.requiredLength;
-      message = 'This field must be longer than ${minLength} characters';
+      message = `This field must be longer than ${minLength} characters`;
     }
 
     return message;

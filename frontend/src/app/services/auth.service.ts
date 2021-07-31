@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map} from 'rxjs/operators';
-import { UserI, UserResponseI } from '../interface/user';
+import { Roles, UserI, UserResponseI } from '../interface/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 
@@ -15,7 +15,7 @@ const helper = new JwtHelperService();
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   public userToken = new BehaviorSubject<string | null>(null);
-
+  
   
   loged: boolean = false;
   extraerRole: string = "";
@@ -40,12 +40,17 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  getRole(){
+    return localStorage.getItem('role');
+  }
+
   login(authData: UserI): Observable<UserResponseI | void> {
     return this.http.post<UserResponseI>(`${environment.API_URL}/auth/login`, authData)
       .pipe(map((res:UserResponseI) => {
         this.saveToken(res.token);
         this.saveRole(res.role);
         this.extraerRole=res.role;
+        console.log(this.extraerRole);
         this.loggedIn.next(true);
         this.loged = true;
         return res;
@@ -79,6 +84,7 @@ export class AuthService {
 
   private checkToken(): void {
       const userToken = localStorage.getItem('token');
+
       if(userToken){ 
         const isExpired = helper.isTokenExpired(userToken);
        

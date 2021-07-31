@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from 'src/app/services/auth.service';
@@ -18,7 +19,9 @@ export class HeaderComponent implements OnInit, OnDestroy{
   @Output() toggleSidenav = new EventEmitter<void>();
 
 
-  constructor(public authSvc: AuthService, public utilsSvc: UtilsService) { }
+  constructor(public authSvc: AuthService, 
+              public utilsSvc: UtilsService,
+              private router: Router) { }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -28,6 +31,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
     this.subscription.add(
       this.authSvc.isLogged.subscribe((res) => (this.isLogged = res))
     );
+
   }
 
 
@@ -36,6 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
       this.toggleSidenav.emit();
       this.utilsSvc.toggleAdmin = true;
     } else {
+      this.router.navigate(['']);
       this.toggleSidenav.emit();
       this.utilsSvc.toggleAdmin = false;
     }

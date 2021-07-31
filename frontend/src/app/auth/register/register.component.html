@@ -6,26 +6,36 @@
         <div class="card-body">
             <form [formGroup] = "registerForm" (ngSubmit)="onRegister()">
                 <div class="form-group">
-                    Username
-                    <input 
-                        type="text" 
-                        formControlName="username" 
-                        class="form-control"
-                        required
-                    />
+                    <div class="row">
+                        <div class="col-md-10">
+                            Username
+                            <input 
+                                type="text" 
+                                formControlName="username" 
+                                class="form-control"
+                                required
+                            />
+                        </div>
+                    </div>
                     <mat-error *ngIf="isValidField('username')">
                         {{ getErrorMessage('username')}}
                     </mat-error>
                 </div>
                 <div class="form-group mt-3">
                     Password
-                    <input 
-                        [type]="hide ? 'password' : 'text'" 
-                        formControlName="password" 
-                        class="form-control"
-                        required
-                    />
-                    <mat-icon (click)="hide = !hide">{{ hide ? "visibility_off" : "visibility"}}</mat-icon>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <input 
+                                [type]="hide ? 'password' : 'text'" 
+                                formControlName="password" 
+                                class="form-control"
+                                required
+                             />
+                        </div>
+                        <div class="col-md-2 mt-2 p-1">
+                            <mat-icon type ="button" (click)="hide = !hide">{{ hide ? "visibility_off" : "visibility"}}</mat-icon>
+                        </div>
+                    </div>
                     <mat-error *ngIf="isValidField('password')">
                         {{ getErrorMessage('password')}}
                     </mat-error>

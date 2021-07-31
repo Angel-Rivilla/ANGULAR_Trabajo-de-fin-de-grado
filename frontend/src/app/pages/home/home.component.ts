@@ -8,9 +8,13 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public authSvc: AuthService) { }
+  isLogged = false;
+  constructor(public authSvc: AuthService) {
+    
+  }
 
   ngOnInit(): void {
+    this.authSvc.isLogged.subscribe((res) => (this.isLogged = res))
   }
 
 }

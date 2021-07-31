@@ -28,6 +28,7 @@ import { AdminInterceptor } from './interceptors/admin-interceptor';
 import { EditProductComponent } from './pages/product/edit-product/edit-product.component';
 import { ListProductComponent } from './pages/product/list-product/list-product.component';
 import { ProductsComponent } from './pages/product/products/products.component';
+import { DetailsProductComponent } from './pages/product/details-product/details-product.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { ProductsComponent } from './pages/product/products/products.component';
     SidebarComponent,
     EditProductComponent,
     ListProductComponent,
-    ProductsComponent
+    ProductsComponent,
+    DetailsProductComponent
   ],
   imports: [
     BrowserModule,

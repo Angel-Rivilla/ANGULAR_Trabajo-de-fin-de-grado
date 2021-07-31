@@ -12,7 +12,7 @@ export class ProductsComponent implements OnInit {
   @HostBinding('class') classes = 'row';
 
   user$: string | null | undefined;
-  isLogged = false;
+  isLogged = false
 
   products: any = [];
 
@@ -31,17 +31,6 @@ export class ProductsComponent implements OnInit {
         this.products = res;
       },
       err=> console.error(err)
-    );
-  }
-
-  deleteProduct(id: string){
-    this.productSvc.deleteProduct(id).subscribe(
-      res => {
-        console.log(res);
-        alert(id + "borrado")
-        this.getProducts();
-      },
-      err => console.log(err)
     );
   }
 }

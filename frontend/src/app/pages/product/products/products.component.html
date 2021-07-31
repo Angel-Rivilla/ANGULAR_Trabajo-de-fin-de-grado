@@ -2,17 +2,13 @@
     <div class="card text-center mt-3">
         <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
             {{product.title}}
-            <button *ngIf="product.createdUser == user$ && isLogged" class="btn btn-danger" (click) ="deleteProduct(product.id)">
-                <i class="far fa-trash-alt"></i>
-            </button>
+            <i [routerLink] = "['product/details', product.id]"class="fas fa-info-circle"></i>
+            
         </div>
         <img [src]="product.image" class="card-img-top">
         {{product.price}}
         <div class="card-body">
             <p>{{product.description}}</p>
-            <a *ngIf="product.createdUser == user$ && isLogged" [routerLink]="['/admin/product/edit', product.id]" class="btn btn-info btn-block">
-                EDIT PRODUCT
-            </a>
         </div>
     </div>
 </div>

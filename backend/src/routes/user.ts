@@ -1,23 +1,25 @@
-import { Router } from "express";
+import { NextFunction, Request, Response, Router } from "express";
 import { UserController } from "../controller/UserController";
 import { checkJwt } from "../middlewares/jwt";
+import * as jwt from 'jsonwebtoken';
 import { checkRole } from "../middlewares/role";
+import config from "../config/config";
 
 const router = Router();
 
 //router.get('/', [checkJwt, checkRole(['admin'])], UserController.getAll);
 
-router.get('/', UserController.getAll);
+router.get('/', checkJwt, checkRole(['admin']), UserController.getAll);
 
-router.get('/:id', UserController.getById);
+router.get('/:id', checkJwt, checkRole(['admin']), UserController.getById);
 
-router.post('/', UserController.newUser);
+router.post('/', checkJwt, checkRole(['admin']), UserController.newUser);
 
-router.post('/register',UserController.registerUser);
+router.post('/register', UserController.registerUser);
 
-router.patch('/:id', UserController.editUser);
+router.patch('/:id', checkJwt, checkRole(['admin']), UserController.editUser);
 
-router.delete('/:id', UserController.deleteUser);
+router.delete('/:id', checkJwt, checkRole(['admin']), UserController.deleteUser);
 
 export default router;
 

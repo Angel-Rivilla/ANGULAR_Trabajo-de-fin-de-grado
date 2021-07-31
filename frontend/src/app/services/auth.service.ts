@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map} from 'rxjs/operators';
-import { Roles, UserI, UserResponseI } from '../interface/user';
+import { UserI, UserResponseI } from '../interface/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 
@@ -14,7 +14,8 @@ const helper = new JwtHelperService();
 })
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
-  private role = new BehaviorSubject<Roles>('reader');
+  public userToken = new BehaviorSubject<string | null>(null);
+
   
   loged: boolean = false;
   extraerRole: string = "";
@@ -25,6 +26,18 @@ export class AuthService {
 
   get isLogged(): Observable<boolean>{
     return this.loggedIn.asObservable();
+  }
+
+  loggedInMethod() {
+    return !!localStorage.getItem('token');
+  }
+
+  getUserTokenValue(){
+    return this.userToken.getValue();
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
   }
 
   login(authData: UserI): Observable<UserResponseI | void> {
@@ -49,6 +62,7 @@ export class AuthService {
         this.extraerRole=res.role;
         this.loggedIn.next(true);
         this.loged = true;
+        this.userToken.next(res.token);
         return res;
       }),
       catchError((err) => this.handlerError(err))
@@ -59,6 +73,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     this.loggedIn.next(false);
+    this.userToken.next(null);
     this.router.navigate(['/login']);
   }
 
@@ -66,12 +81,12 @@ export class AuthService {
       const userToken = localStorage.getItem('token');
       if(userToken){ 
         const isExpired = helper.isTokenExpired(userToken);
-        console.log('isExpired ->', isExpired);
-        //isExpired ? this.logout() : this.loggedIn.next(true);
+       
         if(isExpired){
           this.logout();
         } else {
           this.loggedIn.next(true);
+          this.userToken.next(userToken);
         }
       }
   }

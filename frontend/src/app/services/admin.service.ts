@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { UserBD, UserI } from '../interface/user';
@@ -14,8 +15,13 @@ export class AdminService {
   constructor(private http: HttpClient) { }
 
   //USERS
-  getUsers(){
-    return this.http.get(`${environment.API_URL}/users`);
+  getUsers(): Observable<UserI[]> {
+    return this.http
+    .get<UserI[]>(`${environment.API_URL}/users`);
+  }
+
+  handlerError(handlerError: any): import("rxjs").OperatorFunction<UserI[], any> {
+    throw new Error('Method not implemented.');
   }
 
   getUser(id: string){

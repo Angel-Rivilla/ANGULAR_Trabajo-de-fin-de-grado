@@ -8,7 +8,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { HeaderComponent } from './pages/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { AdminComponent } from './pages/admin/admin.component';
@@ -24,6 +24,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import { UtilsService } from './services/utils.service';
+import { AdminInterceptor } from './interceptors/admin-interceptor';
 
 @NgModule({
   declarations: [
@@ -54,8 +55,12 @@ import { UtilsService } from './services/utils.service';
   providers: [
     AdminService,
     AuthService,
-    UtilsService
-  ],
+    UtilsService,
+    {
+      provide:HTTP_INTERCEPTORS, 
+      useClass: AdminInterceptor, 
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

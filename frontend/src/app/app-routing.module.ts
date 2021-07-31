@@ -5,9 +5,11 @@ import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CheckLoginGuard } from './guards/check-login.guard';
 import { AdminComponent } from './pages/admin/admin.component';
-import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { EditUserComponent } from './pages/user/edit-user/edit-user.component';
 import { HomeComponent } from './pages/home/home.component';
-import { ListUserComponent } from './pages/list-user/list-user.component';
+import { ListUserComponent } from './pages/user/list-user/list-user.component';
+import { ListProductComponent } from './pages/product/list-product/list-product.component';
+import { EditProductComponent } from './pages/product/edit-product/edit-product.component';
 
 const routes: Routes = [
   {path: '', redirectTo:'/', pathMatch: 'full'},
@@ -16,9 +18,14 @@ const routes: Routes = [
   {path: 'login', canActivate: [CheckLoginGuard] , component: LoginComponent},
   {path: '', component: HomeComponent},
   {path: 'admin', canActivate: [AuthGuard], component: AdminComponent},
+
   {path: 'admin/user/edit/:id', canActivate: [AuthGuard], component: EditUserComponent},
   {path: 'admin/user/add', canActivate: [AuthGuard], component: EditUserComponent},
-  {path: 'admin/users', canActivate: [AuthGuard], component: ListUserComponent}
+  {path: 'admin/users', canActivate: [AuthGuard], component: ListUserComponent},
+
+  {path: 'admin/product/edit/:id', canActivate: [AuthGuard], component: EditProductComponent},
+  {path: 'admin/product/add', canActivate: [AuthGuard], component: EditProductComponent},
+  {path: 'admin/products', canActivate: [AuthGuard], component: ListProductComponent}
 ];
 
 @NgModule({

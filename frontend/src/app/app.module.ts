@@ -12,19 +12,22 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { AdminComponent } from './pages/admin/admin.component';
-import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { EditUserComponent } from './pages/user/edit-user/edit-user.component';
 import { FormsModule } from '@angular/forms';
 import { AdminService } from './services/admin.service';
 import { AuthService } from './services/auth.service';
-import { ListUserComponent } from './pages/list-user/list-user.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { ListUserComponent } from './pages/user/list-user/list-user.component';
+import { MatSidenavModule} from '@angular/material/sidenav';
 import { FooterComponent } from './pages/footer/footer.component';
 import { SidebarComponent } from './pages/sidebar/sidebar.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatIconModule} from '@angular/material/icon';
-import {MatListModule} from '@angular/material/list';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatIconModule} from '@angular/material/icon';
+import { MatListModule} from '@angular/material/list';
 import { UtilsService } from './services/utils.service';
 import { AdminInterceptor } from './interceptors/admin-interceptor';
+import { EditProductComponent } from './pages/product/edit-product/edit-product.component';
+import { ListProductComponent } from './pages/product/list-product/list-product.component';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { AdminInterceptor } from './interceptors/admin-interceptor';
     EditUserComponent,
     ListUserComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    EditProductComponent,
+    ListProductComponent
   ],
   imports: [
     BrowserModule,

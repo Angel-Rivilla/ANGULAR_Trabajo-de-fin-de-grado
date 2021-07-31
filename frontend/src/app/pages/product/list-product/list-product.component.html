@@ -1,0 +1,28 @@
+<i [routerLink]="['/admin/product/add']" class="fas fa-plus"></i>
+
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Created At</th>
+      <th>Update At</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let product of products">
+    <tr>
+      <td>{{product.id}}</td>
+      <td>{{product.title}}</td>
+      <td>{{product.description}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.createdAt}}</td>
+      <td>{{product.updateAt}}</td> 
+      <td [routerLink]="['/admin/product/edit', product.id]"><i class="far fa-edit"></i></td>
+      <td (click) ="deleteProduct(product.id)"><i class="far fa-trash-alt"></i></td>
+    </tr>
+  </tbody>
+</table>

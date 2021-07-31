@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { AdminService } from 'src/app/services/admin.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-list-user',
@@ -12,14 +12,14 @@ export class ListUserComponent implements OnInit {
 
   users: any = [];
 
-  constructor(private adminService: AdminService) { }
+  constructor(private userSvc: UserService) { }
   
   ngOnInit(): void {
     this.getUsers();
   }
 
   getUsers(){
-    this.adminService.getUsers().subscribe(
+    this.userSvc.getUsers().subscribe(
       res => {
         this.users = res;
       },
@@ -28,7 +28,7 @@ export class ListUserComponent implements OnInit {
   }
 
   deleteUser(id: string){
-    this.adminService.deleteUser(id).subscribe(
+    this.userSvc.deleteUser(id).subscribe(
       res => {
         console.log(res);
         alert(id + "borrado")

@@ -14,7 +14,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { EditUserComponent } from './pages/user/edit-user/edit-user.component';
 import { FormsModule } from '@angular/forms';
-import { AdminService } from './services/admin.service';
+import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { ListUserComponent } from './pages/user/list-user/list-user.component';
 import { MatSidenavModule} from '@angular/material/sidenav';
@@ -58,7 +58,7 @@ import { ListProductComponent } from './pages/product/list-product/list-product.
     MatListModule
   ],
   providers: [
-    AdminService,
+    UserService,
     AuthService,
     UtilsService,
     {

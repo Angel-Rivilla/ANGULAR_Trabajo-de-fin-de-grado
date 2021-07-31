@@ -8,7 +8,7 @@ import { UserBD, UserI } from '../interface/user';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminService {
+export class UserService {
   
   users: any = [];
 

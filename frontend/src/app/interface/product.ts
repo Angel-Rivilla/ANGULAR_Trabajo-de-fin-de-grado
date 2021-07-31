@@ -4,6 +4,7 @@ export interface ProductI {
     description?: string;
     price?: string;
     image?: string;
+    createdUser?: string | null;
     createdAt?: Date;
     updateAt?: Date;
 }

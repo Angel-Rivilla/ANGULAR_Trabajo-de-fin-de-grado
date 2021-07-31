@@ -5,14 +5,14 @@ import { checkRole } from "../middlewares/role";
 
 const router = Router();
 
-router.get('/', checkJwt, checkRole(['admin']), ProductController.getAll);
+router.get('/', ProductController.getAll);
 
-router.get('/:id', checkJwt, checkRole(['admin']), ProductController.getById);
+router.get('/:id', ProductController.getById);
 
-router.post('/', checkJwt, checkRole(['admin']), ProductController.newProduct);
+router.post('/', checkJwt, ProductController.newProduct);
 
-router.patch('/:id', checkJwt, checkRole(['admin']), ProductController.editProduct);
+router.patch('/:id', checkJwt, ProductController.editProduct);
 
-router.delete('/:id', checkJwt, checkRole(['admin']), ProductController.deleteProduct);
+router.delete('/:id', checkJwt, ProductController.deleteProduct);
 
 export default router;

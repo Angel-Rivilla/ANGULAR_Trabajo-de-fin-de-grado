@@ -33,13 +33,14 @@ export class ProductController {
     };
 
     static newProduct = async (req: Request, res: Response) => {
-        const {title, description, price, image} = req.body;
+        const {title, description, price, image, createdUser} = req.body;
         const product = new Product();
 
         product.title = title;
         product.description = description;
         product.price = price;
         product.image = image;
+        product.createdUser = createdUser;
 
         const validationOpt = { validationError: { target: false, value: false }};
         const errors = await validate(product, validationOpt);

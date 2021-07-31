@@ -27,6 +27,11 @@ export class Product {
     @Column()
     @MinLength(6)
     image: string;
+
+    @Column()
+    @MinLength(6)
+    @IsNotEmpty()
+    createdUser: string;
     
     @Column()
     @CreateDateColumn()

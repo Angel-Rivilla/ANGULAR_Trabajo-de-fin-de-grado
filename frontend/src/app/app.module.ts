@@ -27,6 +27,7 @@ import { UtilsService } from './services/utils.service';
 import { AdminInterceptor } from './interceptors/admin-interceptor';
 import { EditProductComponent } from './pages/product/edit-product/edit-product.component';
 import { ListProductComponent } from './pages/product/list-product/list-product.component';
+import { ProductsComponent } from './pages/product/products/products.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ListProductComponent } from './pages/product/list-product/list-product.
     FooterComponent,
     SidebarComponent,
     EditProductComponent,
-    ListProductComponent
+    ListProductComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,

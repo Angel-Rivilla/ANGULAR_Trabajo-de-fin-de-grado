@@ -1,9 +1,7 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { UserController } from "../controller/UserController";
 import { checkJwt } from "../middlewares/jwt";
-import * as jwt from 'jsonwebtoken';
 import { checkRole } from "../middlewares/role";
-import config from "../config/config";
 
 const router = Router();
 

@@ -130,8 +130,6 @@ export class UserController {
         userRepository.delete(id);
         res.status(201).json({message: 'User deleted'});
     };
-
-
 }
 
 export default UserController;

@@ -9,8 +9,6 @@ import { ProductI } from '../interface/product';
 })
 export class ProductService {
 
-  users: any = [];
-
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<ProductI[]> {

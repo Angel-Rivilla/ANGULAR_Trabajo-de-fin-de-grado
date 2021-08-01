@@ -1,8 +1,8 @@
-import { LowerCasePipe } from '@angular/common';
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductI } from 'src/app/interface/product';
 import { AuthService } from 'src/app/services/auth.service';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -31,7 +31,7 @@ export class DetailsProductComponent implements OnInit {
   user$: string | null | undefined;
 
   constructor(private productSvc: ProductService,
-              private router: Router, 
+              private cartSvc: CartService, 
               private activedRoute: ActivatedRoute,
               private authSvc: AuthService) {}
 
@@ -69,5 +69,9 @@ export class DetailsProductComponent implements OnInit {
       },
       err => console.log(err)
     );
+  }
+
+  addCart(){
+    this.cartSvc.addProduct(this.product);
   }
 }

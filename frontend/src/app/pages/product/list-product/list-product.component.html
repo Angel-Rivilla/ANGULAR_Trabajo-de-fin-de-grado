@@ -7,6 +7,7 @@
       <th>Title</th>
       <th>Description</th>
       <th>Price</th>
+      <th>Created User</th>
       <th>Created At</th>
       <th>Update At</th>
       <th>Edit</th>
@@ -19,6 +20,7 @@
       <td>{{product.title}}</td>
       <td>{{product.description}}</td>
       <td>{{product.price}}</td>
+      <td>{{product.createdUser}}</td>
       <td>{{product.createdAt}}</td>
       <td>{{product.updateAt}}</td> 
       <td [routerLink]="['/admin/product/edit', product.id]"><i class="far fa-edit"></i></td>

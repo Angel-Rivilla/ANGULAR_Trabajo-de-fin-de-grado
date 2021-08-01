@@ -13,6 +13,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy{
   isLogged = false;
+  helpOpen = false;
   
   private subscription: Subscription = new Subscription();
   

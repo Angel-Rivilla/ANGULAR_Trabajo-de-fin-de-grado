@@ -1,3 +1,7 @@
+<div *ngIf="helpOpen">
+  <app-info></app-info>
+</div>
+
 <nav [ngClass]= "!utilsSvc.toggleAdmin ? 'navbar navbar-expand-lg navbar-light bg-light': 'navbar navbar-expand-lg navbar-light bg-light'">
   <div class="container-fluid">
     <ng-container *ngIf="!utilsSvc.toggleAdmin; else viewAdmin">
@@ -7,6 +11,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
+          <li *ngIf = "!isLogged || authSvc.extraerRole != 'admin'" class="nav-item">
+            <a type="button" class="nav-link" (click)="helpOpen = !helpOpen" routerLinkActive="active">
+              <i class="fas fa-question-circle"></i>
+              Ayuda
+            </a>
+          </li>
           <li *ngIf = "!isLogged; else viewLogout" class="nav-item">
             <a class="nav-link" [routerLink]="'/login'" routerLinkActive="active">
               <i class="fas fa-sign-in-alt"></i>
@@ -20,6 +30,11 @@
               Admin
             </a>
           </li>
+          <li *ngIf = "!isLogged || authSvc.extraerRole != 'admin'" class="nav-item">
+            <a type="button" class="nav-link" routerLinkActive="active">
+              <i class="fas fa-shopping-cart"></i>
+            </a>
+          </li>
         </ul>
       </div>
     </ng-container>
@@ -27,10 +42,12 @@
 </nav>
 
 <ng-template #viewLogout>
-  <a type= "button" *ngIf="!utilsSvc.toggleAdmin" (click) = "onLogout()" class="nav-link" routerLinkActive="active">
-    <i class="fas fa-sign-out-alt"></i>
-    LogOut
-  </a>
+  <li *ngIf="!utilsSvc.toggleAdmin" (click) = "onLogout()" class="nav-item">
+    <a type= "button" class="nav-link" routerLinkActive="active">
+      <i class="fas fa-sign-out-alt"></i>
+      LogOut
+    </a>
+  </li>
 </ng-template>
 
 <ng-template #viewAdmin>

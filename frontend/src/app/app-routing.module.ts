@@ -11,6 +11,7 @@ import { ListUserComponent } from './pages/user/list-user/list-user.component';
 import { ListProductComponent } from './pages/product/list-product/list-product.component';
 import { EditProductComponent } from './pages/product/edit-product/edit-product.component';
 import { DetailsProductComponent } from './pages/product/details-product/details-product.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 const routes: Routes = [
   {path: '', redirectTo:'/', pathMatch: 'full'},
@@ -28,7 +29,9 @@ const routes: Routes = [
   {path: 'admin/product/add', canActivate: [AuthGuard], component: EditProductComponent},
   {path: 'admin/products', canActivate: [AuthGuard], component: ListProductComponent},
 
-  {path: 'product/details/:id', component: DetailsProductComponent}
+  {path: 'product/details/:id', component: DetailsProductComponent},
+  
+  {path: 'cart', component: CartComponent}
 ];
 
 @NgModule({

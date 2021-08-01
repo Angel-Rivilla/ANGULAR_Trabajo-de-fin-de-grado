@@ -30,6 +30,7 @@ import { ListProductComponent } from './pages/product/list-product/list-product.
 import { ProductsComponent } from './pages/product/products/products.component';
 import { DetailsProductComponent } from './pages/product/details-product/details-product.component';
 import { InfoComponent } from './pages/info/info.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { InfoComponent } from './pages/info/info.component';
     ListProductComponent,
     ProductsComponent,
     DetailsProductComponent,
-    InfoComponent
+    InfoComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@ import { ProductService } from './product.service';
 export class CartService {
   items: ProductI[] = [];
   products: Observable<ProductI[]> | undefined;
+  priceTotal = 0;
 
   constructor(private authSvc: AuthService,
               private productSvc: ProductService) {
@@ -43,5 +44,13 @@ export class CartService {
 
   getProducts(){
     this.products = this.productSvc.getProducts();
+  }
+
+  sumPriceT(price: string) {
+    return this.priceTotal = this.priceTotal + parseInt(price,10)
+  }
+
+  restPriceT(price: string){
+    return this.priceTotal = this.priceTotal - parseInt(price, 10);
   }
 }

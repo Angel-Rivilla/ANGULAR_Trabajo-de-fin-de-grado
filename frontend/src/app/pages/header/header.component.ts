@@ -35,7 +35,6 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
   }
 
-
   onToggleSidenav(): void{
     if(this.utilsSvc.toggleAdmin == false){
       this.toggleSidenav.emit();
@@ -54,5 +53,9 @@ export class HeaderComponent implements OnInit, OnDestroy{
       this.toggleSidenav.emit();
       this.utilsSvc.toggleAdmin = false;
     }
+  }
+
+  onNavigateCart(){
+    this.router.navigate(['cart']);
   }
 }

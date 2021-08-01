@@ -73,5 +73,8 @@ export class DetailsProductComponent implements OnInit {
 
   addCart(){
     this.cartSvc.addProduct(this.product);
+    if(this.product.price){
+      this.cartSvc.sumPriceT(this.product.price)
+    };
   }
 }

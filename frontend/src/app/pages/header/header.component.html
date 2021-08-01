@@ -30,7 +30,7 @@
               Admin
             </a>
           </li>
-          <li *ngIf = "!isLogged || authSvc.extraerRole != 'admin'" class="nav-item">
+          <li *ngIf = "!isLogged || authSvc.extraerRole != 'admin'" (click)="onNavigateCart()" class="nav-item">
             <a type="button" class="nav-link" routerLinkActive="active">
               <i class="fas fa-shopping-cart"></i>
             </a>

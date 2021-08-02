@@ -3,10 +3,9 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map} from 'rxjs/operators';
-import { Roles, UserI, UserResponseI } from '../interface/user';
+import { Roles, UserBD, UserI, UserResponseI } from '../interface/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
-import { CartService } from './cart.service';
 
 const helper = new JwtHelperService();
 
@@ -57,9 +56,7 @@ export class AuthService {
   login(authData: UserI): Observable<UserResponseI | void> {
     return this.http.post<UserResponseI>(`${environment.API_URL}/auth/login`, authData)
       .pipe(map((res:UserResponseI) => {
-        this.saveToken(res.token);
-        this.saveRole(res.role);
-        this.saveUser(authData.username);
+        this.saveLocalStorage(res.token,res.role,authData.username);
         this.loggedIn.next(true);
         this.usernameIn.next(authData.username);
         this.roleIn.next(res.role);
@@ -74,9 +71,7 @@ export class AuthService {
   register(authData: UserI){
     return this.http.post<UserResponseI>(`${environment.API_URL}/users/register`, authData)
       .pipe(map((res:UserResponseI) => {
-        this.saveToken(res.token);
-        this.saveRole(res.role);
-        this.saveUser(authData.username);
+        this.saveLocalStorage(res.token,res.role,authData.username);
         this.loggedIn.next(true);
         this.loged = true;
         this.userToken.next(res.token);
@@ -118,15 +113,9 @@ export class AuthService {
       }
   }
 
-  private saveToken(token: string): void{
+  private saveLocalStorage(token: string, role: string, user: string): void{
     localStorage.setItem('token', token);
-  }
-
-  private saveRole(role: string): void{
     localStorage.setItem('role', role);
-  }
-
-  private saveUser(user: string): void{
     localStorage.setItem('user', user);
   }
 
@@ -140,6 +129,18 @@ export class AuthService {
     return throwError(errorMessage);
   }
 
+  //Llamadas http
+  forgotPassword(updateUser: UserBD){
+    return this.http.put(`${environment.API_URL}/auth/forgot-password/`, updateUser);
+  }
+
+  changePassword(updateUser: UserBD){
+    return this.http.put(`${environment.API_URL}/auth/new-password/`, updateUser);
+  }
+  
+  refreshToken(updateUser: UserResponseI){
+    return this.http.post(`${environment.API_URL}/auth/refresh-token/`, updateUser);
+  }
 }
 
 

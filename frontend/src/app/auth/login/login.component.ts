@@ -67,4 +67,17 @@ export class LoginComponent implements OnInit, OnDestroy {
       !this.loginForm.get(field)?.valid
     );
   }
+
+  changePassword(){
+    const formValue = this.loginForm.value;
+    this.subscription.add(
+      this.authSvc.forgotPassword(formValue.username)
+        .subscribe(
+          res => {
+            console.log(res);
+          },
+          err => console.error(err)
+        )
+      );
+  }
 }

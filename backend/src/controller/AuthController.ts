@@ -3,7 +3,8 @@ import {Request, Response} from 'express';
 import {User} from '../entity/User';
 import * as jwt from 'jsonwebtoken';
 import config from '../config/config';
-import { validate } from "class-validator";
+import { validate } from 'class-validator';
+import { transporter } from './../config/mailer';
 
 
 class AuthController {
@@ -28,9 +29,16 @@ class AuthController {
         }
         
         const token = jwt.sign({userId: user.id, username: user.username}, config.jwtSecret, { expiresIn: '1h'});
+        const refreshToken = jwt.sign({userId: user.id, username: user.username}, config.jwtSecretRefresh, { expiresIn: '1h'});
         const role = user.role;
         
-        res.json({message: 'OK', token, role});
+        user.refreshToken = refreshToken;
+        try{
+            await userRepository.save(user);
+        } catch (error){
+            return res.status(400).json({message:'something goes wrong'});
+        }
+        res.json({message: 'OK', token, role, refreshToken});
     };
 
     static changePassword = async (req: Request, res: Response) => {
@@ -67,7 +75,6 @@ class AuthController {
         res.json({message: 'Password change!'});
     };
 
-
     static forgotPassword = async (req: Request, res: Response) => {
         const {username} = req.body;
         if(!(username)){
@@ -90,7 +97,16 @@ class AuthController {
         }
 
         try{
-            
+            await transporter.sendMail({
+                from: '"Forgot password 👻" <angelrivillaarre@gmail.com>', // sender address
+                to: user.username, // list of receivers
+                subject: "Forgot password ✔", // Subject line
+                text: "Hello world?", // plain text body
+                html: `
+                    <b>Please click on the following link, or paste this into your browser to cplete the process:</b>
+                    <a href="${verificationLink}">${verificationLink}</a>
+                `, // html body
+              });
         } catch (error){
             emailStatus = error;
             return res.status(400).json({message:'Something goes wrong'});
@@ -139,6 +155,28 @@ class AuthController {
             return res.status(401).json({message: 'Something goes wrong'});
         }
         res.json({message: 'Password changed!'});
+    }
+
+    static refreshToken = async (req: Request, res: Response) => {
+        const refreshToken = req.headers.refresh as string;
+        if(!(refreshToken)){
+            res.status(400).json({message: 'Something goes wrong!'});
+        }
+
+        const userRepository = getRepository(User);
+        let user: User;
+
+        try{
+            const verifyResult = jwt.verify(refreshToken, config.jwtSecretRefresh);
+            const {username} = verifyResult as User;
+            user = await userRepository.findOneOrFail({where: {username}});
+
+        } catch (error) {
+            return res.status(400).json({message:'Something is wrong!'});
+        }
+        
+        const token = jwt.sign({userId: user.id, username: user.username}, config.jwtSecret, {expiresIn:'120'});
+        res.json({message: 'OK', token});
     }
 }
 

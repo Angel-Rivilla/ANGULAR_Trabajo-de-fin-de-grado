@@ -1,4 +1,4 @@
-export type Roles = 'reader' | 'admin';
+export type Roles = 'reader' | 'admin' ;
 
 export interface UserBD{
     id?: number;

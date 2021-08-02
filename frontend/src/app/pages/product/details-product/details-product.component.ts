@@ -19,6 +19,7 @@ export class DetailsProductComponent implements OnInit {
     title: '',
     description: '',
     price: '',
+    count: 0,
     image: '',
     createdUser: '',
     createdAt: new Date(),
@@ -31,7 +32,8 @@ export class DetailsProductComponent implements OnInit {
   user$: string | null | undefined;
 
   constructor(private productSvc: ProductService,
-              private cartSvc: CartService, 
+              private cartSvc: CartService,
+              private router: Router, 
               private activedRoute: ActivatedRoute,
               private authSvc: AuthService) {}
 
@@ -75,6 +77,7 @@ export class DetailsProductComponent implements OnInit {
     this.cartSvc.addProduct(this.product);
     if(this.product.price){
       this.cartSvc.sumPriceT(this.product.price)
+      this.cartSvc.countCart = this.cartSvc.countCart + 1;
     };
   }
 }

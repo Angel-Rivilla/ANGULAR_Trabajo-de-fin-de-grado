@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { AuthService } from 'src/app/services/auth.service';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -14,8 +15,10 @@ import { UtilsService } from 'src/app/services/utils.service';
 export class HeaderComponent implements OnInit, OnDestroy{
   isLogged = false;
   helpOpen = false;
+  isAdmin: string | null = null;
   
   private subscription: Subscription = new Subscription();
+  private destroy$ = new Subject<any>();
   
   @Output() toggleSidenav = new EventEmitter<void>();
 
@@ -25,13 +28,18 @@ export class HeaderComponent implements OnInit, OnDestroy{
               private router: Router) { }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.destroy$.next({});
+    this.destroy$.complete();
   }
 
   ngOnInit(): void {
-    this.subscription.add(
-      this.authSvc.isLogged.subscribe((res) => (this.isLogged = res))
-    );
+    this.authSvc.isLogged
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((res) => (this.isLogged = res));
+    
+    this.authSvc.isAdmin$
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((res) => (this.isAdmin = res));
 
   }
 
@@ -44,12 +52,11 @@ export class HeaderComponent implements OnInit, OnDestroy{
       this.toggleSidenav.emit();
       this.utilsSvc.toggleAdmin = false;
     }
-    
   }
 
   onLogout(): void{
     this.authSvc.logout();
-    if(this.utilsSvc.toggleAdmin && this.authSvc.extraerRole == 'admin'){
+    if(this.utilsSvc.toggleAdmin && this.isAdmin == 'admin'){
       this.toggleSidenav.emit();
       this.utilsSvc.toggleAdmin = false;
     }

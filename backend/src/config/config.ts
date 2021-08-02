@@ -1,3 +1,4 @@
 export default {
-    jwtSecret: 'PDJFGhjasj@QWwxz'
+    jwtSecret: 'PDJFGhjasj@QWwxz',
+    jwtSecretReset: 'ODGFHjsw@98wq'
 };

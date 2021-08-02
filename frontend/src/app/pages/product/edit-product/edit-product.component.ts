@@ -18,6 +18,7 @@ export class EditProductComponent implements OnInit {
     title: '',
     description: '',
     price: '',
+    count: 1,
     image: '',
     createdUser: '',
     createdAt: new Date(),

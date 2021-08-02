@@ -33,12 +33,13 @@ export class ProductController {
     };
 
     static newProduct = async (req: Request, res: Response) => {
-        const {title, description, price, image, createdUser} = req.body;
+        const {title, description, price, count, image, createdUser} = req.body;
         const product = new Product();
 
         product.title = title;
         product.description = description;
         product.price = price;
+        product.count = count;
         product.image = image;
         product.createdUser = createdUser;
 
@@ -61,7 +62,7 @@ export class ProductController {
     static editProduct = async (req: Request, res: Response) => {
         let product;
         const {id} = req.params;
-        const {title, description, price, image} = req.body;
+        const {title, description, price, count, image} = req.body;
 
         const productRepository = getRepository(Product);
 
@@ -70,6 +71,7 @@ export class ProductController {
             product.title = title;
             product.description = description;
             product.price = price;
+            product.count = count;
             product.image = image;
 
         } catch (err) {

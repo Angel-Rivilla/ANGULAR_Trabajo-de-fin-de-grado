@@ -6,6 +6,7 @@ import { catchError, map} from 'rxjs/operators';
 import { Roles, UserI, UserResponseI } from '../interface/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
+import { CartService } from './cart.service';
 
 const helper = new JwtHelperService();
 
@@ -14,14 +15,14 @@ const helper = new JwtHelperService();
 })
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
-  public userToken = new BehaviorSubject<string | null>(null);
-
+  private userToken = new BehaviorSubject<string | null>(null);
   private usernameIn = new BehaviorSubject<string | null>(null);
+  private roleIn = new BehaviorSubject<string | null>(null);
   
   loged: boolean = false;
-  extraerRole: string = "";
 
-  constructor(private http: HttpClient, private router: Router){
+  constructor(private http: HttpClient, 
+              private router: Router){
     this.checkToken();
   }
 
@@ -31,6 +32,10 @@ export class AuthService {
 
   get usernameLogged(): Observable<string | null> {
     return this.usernameIn.asObservable();
+  }
+
+  get isAdmin$(): Observable<string | null>{
+    return this.roleIn.asObservable();
   }
 
   loggedInMethod() {
@@ -54,9 +59,10 @@ export class AuthService {
       .pipe(map((res:UserResponseI) => {
         this.saveToken(res.token);
         this.saveRole(res.role);
-        this.extraerRole=res.role;
+        this.saveUser(authData.username);
         this.loggedIn.next(true);
         this.usernameIn.next(authData.username);
+        this.roleIn.next(res.role);
         console.log(this.usernameIn);
         this.loged = true;
         return res;
@@ -70,11 +76,12 @@ export class AuthService {
       .pipe(map((res:UserResponseI) => {
         this.saveToken(res.token);
         this.saveRole(res.role);
-        this.extraerRole=res.role;
+        this.saveUser(authData.username);
         this.loggedIn.next(true);
         this.loged = true;
         this.userToken.next(res.token);
         this.usernameIn.next(authData.username);
+        this.roleIn.next(res.role);
         return res;
       }),
       catchError((err) => this.handlerError(err))
@@ -84,14 +91,18 @@ export class AuthService {
   logout(): void{
     localStorage.removeItem('token');
     localStorage.removeItem('role');
+    localStorage.removeItem('user');
     this.loggedIn.next(false);
     this.userToken.next(null);
     this.usernameIn.next(null);
+    this.roleIn.next(null);
     this.router.navigate(['/login']);
   }
 
   private checkToken(): void {
       const userToken = localStorage.getItem('token');
+      const role:string | null = localStorage.getItem('role');
+      const userLogged = localStorage.getItem('user');
 
       if(userToken){ 
         const isExpired = helper.isTokenExpired(userToken);
@@ -101,17 +112,22 @@ export class AuthService {
         } else {
           this.loggedIn.next(true);
           this.userToken.next(userToken);
+          this.roleIn.next(role);
+          this.usernameIn.next(userLogged);
         }
       }
   }
 
+  private saveToken(token: string): void{
+    localStorage.setItem('token', token);
+  }
 
   private saveRole(role: string): void{
     localStorage.setItem('role', role);
   }
 
-  private saveToken(token: string): void{
-    localStorage.setItem('token', token);
+  private saveUser(user: string): void{
+    localStorage.setItem('user', user);
   }
 
   private handlerError(err: any): Observable<never>{

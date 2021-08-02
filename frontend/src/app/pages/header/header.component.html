@@ -4,14 +4,14 @@
 
 <nav [ngClass]= "!utilsSvc.toggleAdmin ? 'navbar navbar-expand-lg navbar-light bg-light': 'navbar navbar-expand-lg navbar-light bg-light'">
   <div class="container-fluid">
-    <ng-container *ngIf="!utilsSvc.toggleAdmin; else viewAdmin">
+    <ng-container *ngIf="!utilsSvc.toggleAdmin && isAdmin != 'admin'; else viewAdmin">
       <a class="navbar-brand" routerLink="/">ngMysql Users</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li *ngIf = "!isLogged || authSvc.extraerRole != 'admin'" class="nav-item">
+          <li *ngIf = "!isLogged || isAdmin != 'admin'" class="nav-item">
             <a type="button" class="nav-link" (click)="helpOpen = !helpOpen" routerLinkActive="active">
               <i class="fas fa-question-circle"></i>
               Ayuda
@@ -23,14 +23,7 @@
               Login
             </a>
           </li>
-          <li *ngIf = "isLogged && authSvc.extraerRole == 'admin'" (click)="onToggleSidenav()" [routerLink]="'/admin'" class="nav-item">
-            <a type= "button" class="nav-link" routerLinkActive="active">
-              <i *ngIf="utilsSvc.toggleAdmin" class="fas fa-unlock-alt"></i>
-              <i *ngIf="!utilsSvc.toggleAdmin" class="fas fa-lock"></i>
-              Admin
-            </a>
-          </li>
-          <li *ngIf = "!isLogged || authSvc.extraerRole != 'admin'" (click)="onNavigateCart()" class="nav-item">
+          <li *ngIf = "!isLogged || isAdmin != 'admin'" (click)="onNavigateCart()" class="nav-item">
             <a type="button" class="nav-link" routerLinkActive="active">
               <i class="fas fa-shopping-cart"></i>
             </a>
@@ -51,7 +44,8 @@
 </ng-template>
 
 <ng-template #viewAdmin>
-   <a class="navbar-brand" routerLink="/admin"> Admin Panel </a>
+   <a *ngIf="utilsSvc.toggleAdmin" class="navbar-brand" routerLink="/admin"> Admin Panel </a>
+   <a *ngIf="!utilsSvc.toggleAdmin" class="navbar-brand" routerLink="/">ngMysql Users</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -63,7 +57,7 @@
             Login
           </a>
         </li>
-        <li *ngIf = "isLogged && authSvc.extraerRole == 'admin'" (click)="onToggleSidenav()" [routerLink]="'/admin'" class="nav-item">
+        <li *ngIf = "isLogged && isAdmin == 'admin'" (click)="onToggleSidenav()" [routerLink]="'/admin'" class="nav-item">
           <a type= "button" class="nav-link" routerLinkActive="active">
             <i *ngIf="utilsSvc.toggleAdmin" class="fas fa-unlock-alt"></i>
             <i *ngIf="!utilsSvc.toggleAdmin" class="fas fa-lock"></i>

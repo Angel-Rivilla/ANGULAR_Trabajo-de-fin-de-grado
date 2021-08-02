@@ -13,23 +13,23 @@ export class CartComponent implements OnInit {
 
   products = this.cartSvc.getItems();
   priceTotal = this.cartSvc.priceTotal;
-  product: ProductI = {
+  countCart = this.cartSvc.countCart;
+  productI: ProductI = {
     id: 0,
     title: '',
     description: '',
     price: '',
+    count: 1,
     image: '',
     createdUser: '',
     createdAt: new Date(),
     updateAt: new Date()
   };
   
-
-
-  constructor(private cartSvc: CartService,
-              private router: Router) { }
+  constructor(private cartSvc: CartService) { }
 
   ngOnInit(): void {
+    console.log(this.products); 
     
   }
 
@@ -37,12 +37,15 @@ export class CartComponent implements OnInit {
     this.cartSvc.clearCart();
     this.products = [];
     this.cartSvc.priceTotal = 0;
+    this.cartSvc.countCart = 0;
   }
 
   deleteItem(product: ProductI): void {
     this.cartSvc.deleteItem(product);
     if(product.price) {
       this.cartSvc.restPriceT(product.price);
+      this.priceTotal = this.priceTotal - parseInt(product.price, 10);
+      this.countCart = this.countCart - 1;
     }
   }
 }

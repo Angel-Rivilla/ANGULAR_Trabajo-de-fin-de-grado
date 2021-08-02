@@ -3,6 +3,7 @@ export interface ProductI {
     title?: string;
     description?: string;
     price?: string;
+    count?: number;
     image?: string;
     createdUser?: string | null;
     createdAt?: Date;

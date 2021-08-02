@@ -7,6 +7,11 @@ const router = Router();
 //login
 router.post('/login', AuthController.login);
 
+//forgot password
+router.put('/forgot-password', AuthController.forgotPassword);
+
+//create new password
+router.put('/new-password', AuthController.createNewPassword);
 
 //change password
 router.post('/change-password', checkJwt, AuthController.changePassword);

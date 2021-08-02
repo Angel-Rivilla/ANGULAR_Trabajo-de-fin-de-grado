@@ -103,7 +103,7 @@ class AuthController {
                 subject: "Forgot password ✔", // Subject line
                 text: "Hello world?", // plain text body
                 html: `
-                    <b>Please click on the following link, or paste this into your browser to cplete the process:</b>
+                    <b>Please click on the following link, or paste this into your browser to complete the process:</b>
                     <a href="${verificationLink}">${verificationLink}</a>
                 `, // html body
               });

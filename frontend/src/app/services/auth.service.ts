@@ -130,8 +130,8 @@ export class AuthService {
   }
 
   //Llamadas http
-  forgotPassword(updateUser: UserBD){
-    return this.http.put(`${environment.API_URL}/auth/forgot-password/`, updateUser);
+  forgotPassword(username: string){
+    return this.http.put(`${environment.API_URL}/auth/forgot-password/`, username);
   }
 
   changePassword(updateUser: UserBD){

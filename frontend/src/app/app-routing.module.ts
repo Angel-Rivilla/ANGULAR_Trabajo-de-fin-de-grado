@@ -18,6 +18,7 @@ const routes: Routes = [
   {path: 'notFound', loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule) },
   {path: 'register', component: RegisterComponent},
   {path: 'login', canActivate: [CheckLoginGuard] , component: LoginComponent},
+
   {path: '', component: HomeComponent},
   {path: 'admin', canActivate: [AuthGuard], component: AdminComponent},
 

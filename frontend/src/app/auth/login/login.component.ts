@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+//import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -84,4 +85,5 @@ export class LoginComponent implements OnInit, OnDestroy {
         )
       );
   }
+
 }

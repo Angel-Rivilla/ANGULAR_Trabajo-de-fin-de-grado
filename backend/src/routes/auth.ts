@@ -14,4 +14,5 @@ router.put('/new-password', AuthController.createNewPassword);
 router.post('/refresh-token', AuthController.refreshToken);
 
 router.post('/change-password', checkJwt, AuthController.changePassword);
+
 export default router;

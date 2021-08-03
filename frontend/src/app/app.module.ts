@@ -31,6 +31,7 @@ import { ProductsComponent } from './pages/product/products/products.component';
 import { DetailsProductComponent } from './pages/product/details-product/details-product.component';
 import { InfoComponent } from './pages/info/info.component';
 import { CartComponent } from './pages/cart/cart.component';
+//import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({

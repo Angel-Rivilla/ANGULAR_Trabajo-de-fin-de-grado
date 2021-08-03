@@ -16,8 +16,10 @@ import { CartComponent } from './pages/cart/cart.component';
 const routes: Routes = [
   {path: '', redirectTo:'/', pathMatch: 'full'},
   {path: 'notFound', loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule) },
-  {path: 'register', component: RegisterComponent},
+  {path: 'register', canActivate: [CheckLoginGuard], component: RegisterComponent},
   {path: 'login', canActivate: [CheckLoginGuard] , component: LoginComponent},
+  
+  {path: 'new-password/:id/:token', component: RegisterComponent},
 
   {path: '', component: HomeComponent},
   {path: 'admin', canActivate: [AuthGuard], component: AdminComponent},

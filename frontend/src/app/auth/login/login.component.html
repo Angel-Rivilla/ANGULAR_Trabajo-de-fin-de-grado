@@ -55,28 +55,5 @@
             <span type="button" routerLink="/register">Sign up here.</span>
         </div>
     </div>
-
-    <form [formGroup] = "passwordForm" (ngSubmit)="changePassword()">
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-10">
-                    Username
-                    <input 
-                        type="text" 
-                        formControlName="username" 
-                        class="form-control"
-                        required
-                    />
-                </div>
-            </div>
-        </div>
-        
-        <button  
-            type="submit" 
-            class="btn-info form-control mt-3"
-        >
-            Change Password
-        </button>
-    </form>
 </div>
 

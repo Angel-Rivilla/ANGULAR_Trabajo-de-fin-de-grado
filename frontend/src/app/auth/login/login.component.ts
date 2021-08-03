@@ -3,7 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-//import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -22,12 +22,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   })
 
   passwordForm = this.fb.group({
-    username: ['']
+    username: ['', [Validators.required, Validators.pattern(this.isValidEmail)]]
   })
   
   constructor(private authSvc: AuthService, 
               private fb: FormBuilder,
-              private router: Router) { }
+              private router: Router,
+              private modal: NgbModal) { }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -35,6 +36,15 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     
+  }
+
+  //MODAL
+  modalForgetPassword(contenido: any){
+    this.modal.open(contenido, {centered: true});
+  }
+
+  modalcorrectPassword(contenido: any){
+    this.modal.open(contenido, {centered: true});
   }
   
   onLogin(): void {

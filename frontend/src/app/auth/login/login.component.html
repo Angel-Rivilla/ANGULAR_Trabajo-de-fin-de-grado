@@ -50,10 +50,57 @@
             </form>
         </div>
         <div class="card-footer">
-            <span type="button">Forget password?</span>
+            <span type="button" (click)="modalForgetPassword(forgetPassword)">Forget password?</span>
             <span>Don't have an account yet?</span>
             <span type="button" routerLink="/register">Sign up here.</span>
         </div>
     </div>
 </div>
 
+<ng-template #forgetPassword let-modal>
+    <div class="modal-header">
+        <span class="modal-title tittlePopUp">Solicitar nueva contraseña</span>
+        <mat-icon class ="close" aria-label="close" type="button" (click) ="modal.dismiss()">close</mat-icon>
+    </div>
+    
+    <div class="modal-body">
+        <form [formGroup] ="passwordForm" (ngSubmit)="changePassword()">
+            <div class="form-group">
+                <input 
+                    type="email" 
+                    class="form-control" 
+                    aria-describedby="emailHelp" 
+                    placeholder="*Email" 
+                    formControlName="username"
+                    required
+                >
+            </div>
+            <button 
+                [disabled]="passwordForm.invalid" 
+                (click) ="modal.close(); modalcorrectPassword(correctPassword)" 
+                type="submit" 
+                class="btn btn-primary btn-lg mt-3">
+                Recuperar la contraseña
+            </button>   
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        *Importante: Es posible que recibas un correo electrónico después de completar este formulario.
+    </div>
+</ng-template>
+
+<ng-template #correctPassword let-modal>
+    <div class="modal-header">
+        <span class="modal-title tittlePopUp">Solicitar nueva contraseña</span>
+        <mat-icon class ="close" aria-label="close" type="button" (click) ="modal.dismiss()">close</mat-icon>
+    </div>
+    
+    <div class="modal-body">
+        Se ha enviado un email. Cuando recibas tu información de usuario, sigue las indicaciones para restablecer la contraseña.
+    </div>
+
+    <div class="modal-footer">
+        *Importante: Es posible que recibas un correo electrónico después de completar este formulario.
+    </div>
+</ng-template>

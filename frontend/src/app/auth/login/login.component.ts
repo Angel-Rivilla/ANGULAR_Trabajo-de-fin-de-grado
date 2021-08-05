@@ -85,6 +85,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   changePassword(){
     const formValue = this.passwordForm.value;
+    
     this.subscription.add(
       this.authSvc.forgotPassword(formValue)
         .subscribe(

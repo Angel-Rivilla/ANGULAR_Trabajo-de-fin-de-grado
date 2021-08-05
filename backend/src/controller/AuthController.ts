@@ -90,7 +90,7 @@ class AuthController {
         try{
             user = await userRepository.findOneOrFail({where: {username}});
             const token = jwt.sign({userId: user.id, username: user.username}, config.jwtSecretReset,{expiresIn: '10m'});
-            verificationLink= `http://localhost:4200/new-password/${user.id}/${token}`;
+            verificationLink= `http://localhost:4200/new-password/${token}`;
             user.resetToken = token;
         } catch (error) {
             return res.json({message});
@@ -119,15 +119,19 @@ class AuthController {
             return res.status(400).json({message: 'Something goes wrong!'});
         }
 
-        res.json({message, info: emailStatus, test: verificationLink});
+        res.json({message, info: emailStatus,user});
     }
 
     static createNewPassword = async (req: Request, res: Response) => {
         const {newPassword} = req.body;
         const resetToken = req.headers.reset as string;
 
-        if(!(resetToken && newPassword)){
-            res.status(400).json({message: 'All the fields are required'});
+        if(!(newPassword)){
+            res.status(400).json({message: 'Password is required'});
+        }
+
+        if(!(resetToken)){
+            res.status(400).json({message: 'Token is required'});
         }
 
         const userRepository = getRepository(User);
@@ -138,10 +142,10 @@ class AuthController {
             jwtPayload = jwt.verify(resetToken, config.jwtSecretReset);
             user = await userRepository.findOneOrFail({where: {resetToken}});
         } catch (error) {
-            return res.status(401).json({message:'Something goes wrong'});
+            return res.status(401).json({message:'Something goes wrong1'});
         }
         user.password = newPassword;
-        const validationOps={validationError: {target:false,value:false}};
+        const validationOps={validationError: {target:false, value:false}};
         const errors = await validate(user,validationOps);
 
         if(errors.length > 0){
@@ -152,7 +156,7 @@ class AuthController {
             user.hashPassword();
             await userRepository.save(user);
         } catch{
-            return res.status(401).json({message: 'Something goes wrong'});
+            return res.status(401).json({message: 'Something goes wrong2'});
         }
         res.json({message: 'Password changed!'});
     }
@@ -175,7 +179,7 @@ class AuthController {
             return res.status(400).json({message:'Something is wrong!'});
         }
         
-        const token = jwt.sign({userId: user.id, username: user.username}, config.jwtSecret, {expiresIn:'120'});
+        const token = jwt.sign({userId: user.id, username: user.username}, config.jwtSecret, {expiresIn:'1h'});
         res.json({message: 'OK', token});
     }
 }

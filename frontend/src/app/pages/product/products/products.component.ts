@@ -12,6 +12,7 @@ export class ProductsComponent implements OnInit {
   @HostBinding('class') classes = 'row';
 
   user$: string | null | undefined;
+  tokenReset$: string | null | undefined;
   isLogged = false
 
   products: any = [];
@@ -23,6 +24,10 @@ export class ProductsComponent implements OnInit {
     this.getProducts();
     this.authSvc.usernameLogged.subscribe((res) => (this.user$ = res))
     this.authSvc.isLogged.subscribe((res) => (this.isLogged = res))
+    this.authSvc.isToken$.subscribe((res) => (this.tokenReset$ = res))
+    console.log(this.tokenReset$)
+    console.log(this.user$)
+    console.log(this.isLogged)
   }
 
   getProducts(){

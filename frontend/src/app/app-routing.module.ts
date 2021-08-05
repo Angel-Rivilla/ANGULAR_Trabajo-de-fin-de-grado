@@ -12,14 +12,14 @@ import { ListProductComponent } from './pages/product/list-product/list-product.
 import { EditProductComponent } from './pages/product/edit-product/edit-product.component';
 import { DetailsProductComponent } from './pages/product/details-product/details-product.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { PasswordComponent } from './auth/password/password.component';
 
 const routes: Routes = [
   {path: '', redirectTo:'/', pathMatch: 'full'},
   {path: 'notFound', loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule) },
   {path: 'register', canActivate: [CheckLoginGuard], component: RegisterComponent},
   {path: 'login', canActivate: [CheckLoginGuard] , component: LoginComponent},
-  
-  {path: 'new-password/:id/:token', component: RegisterComponent},
+  {path: 'new-password/:token', component: PasswordComponent},
 
   {path: '', component: HomeComponent},
   {path: 'admin', canActivate: [AuthGuard], component: AdminComponent},

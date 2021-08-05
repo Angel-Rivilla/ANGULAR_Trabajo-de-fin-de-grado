@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map} from 'rxjs/operators';
-import { Roles, UserBD, UserI, UserResponseI } from '../interface/user';
+import { UserBD, UserI, UserReset, UserResponseI} from '../interface/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 
@@ -17,7 +17,10 @@ export class AuthService {
   private userToken = new BehaviorSubject<string | null>(null);
   private usernameIn = new BehaviorSubject<string | null>(null);
   private roleIn = new BehaviorSubject<string | null>(null);
+  private tokenIn = new BehaviorSubject<string | null>(null);
   
+
+  tokenRefresh = "";
   loged: boolean = false;
 
   constructor(private http: HttpClient, 
@@ -37,6 +40,10 @@ export class AuthService {
     return this.roleIn.asObservable();
   }
 
+  get isToken$(): Observable<string | null>{
+    return this.tokenIn.asObservable();
+  }
+
   loggedInMethod() {
     return !!localStorage.getItem('token');
   }
@@ -49,6 +56,10 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  getTokenReset(){
+    return localStorage.getItem('resetToken');
+  }
+
   getRole(){
     return localStorage.getItem('role');
   }
@@ -57,6 +68,7 @@ export class AuthService {
     return this.http.post<UserResponseI>(`${environment.API_URL}/auth/login`, authData)
       .pipe(map((res:UserResponseI) => {
         this.saveLocalStorage(res.token,res.role,authData.username);
+        this.tokenIn.next(res.token);
         this.loggedIn.next(true);
         this.usernameIn.next(authData.username);
         this.roleIn.next(res.role);
@@ -119,6 +131,10 @@ export class AuthService {
     localStorage.setItem('user', user);
   }
 
+  private saveResetToken(resetToken: string): void{
+    localStorage.setItem('resetToken', resetToken);
+  }
+
   private handlerError(err: any): Observable<never>{
     let errorMessage = 'An error ocurred retrienving data';
     if(err){
@@ -131,11 +147,25 @@ export class AuthService {
 
   //Llamadas http
   forgotPassword(username: string){
-    return this.http.put(`${environment.API_URL}/auth/forgot-password/`, username);
+    return this.http.put<UserReset>(`${environment.API_URL}/auth/forgot-password/`, username)
+    .pipe(map((res:UserReset) => {
+      if(res.user.resetToken) { 
+        this.tokenIn.next(res.user.resetToken) 
+        this.saveResetToken(res.user.resetToken);
+      }
+      return res;
+    }),
+    catchError((err) => this.handlerError(err))
+  );
   }
 
-  changePassword(updateUser: UserBD){
-    return this.http.put(`${environment.API_URL}/auth/new-password/`, updateUser);
+  changePassword(newPassword: string){
+    return this.http.put(`${environment.API_URL}/auth/new-password/`, newPassword)
+    .pipe(map(res => {
+      return res;
+    }),
+    catchError((err) => this.handlerError(err))
+  );
   }
   
   refreshToken(updateUser: UserResponseI){

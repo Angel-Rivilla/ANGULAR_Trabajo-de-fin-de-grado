@@ -31,7 +31,8 @@ import { ProductsComponent } from './pages/product/products/products.component';
 import { DetailsProductComponent } from './pages/product/details-product/details-product.component';
 import { InfoComponent } from './pages/info/info.component';
 import { CartComponent } from './pages/cart/cart.component';
-//import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PasswordComponent } from './auth/password/password.component';
+import { PasswordInterceptor } from './interceptors/password-interceptor';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { CartComponent } from './pages/cart/cart.component';
     ProductsComponent,
     DetailsProductComponent,
     InfoComponent,
-    CartComponent
+    CartComponent,
+    PasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +75,11 @@ import { CartComponent } from './pages/cart/cart.component';
     {
       provide:HTTP_INTERCEPTORS, 
       useClass: AdminInterceptor, 
+      multi: true
+    },
+    {
+      provide:HTTP_INTERCEPTORS, 
+      useClass: PasswordInterceptor, 
       multi: true
     }],
   bootstrap: [AppComponent]

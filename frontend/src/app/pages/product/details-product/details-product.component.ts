@@ -74,10 +74,10 @@ export class DetailsProductComponent implements OnInit {
   }
 
   addCart(){
-    this.cartSvc.addProduct(this.product);
     if(this.product.price){
       this.cartSvc.sumPriceT(this.product.price)
       this.cartSvc.countCart = this.cartSvc.countCart + 1;
     };
+    this.cartSvc.addProduct(this.product);
   }
 }

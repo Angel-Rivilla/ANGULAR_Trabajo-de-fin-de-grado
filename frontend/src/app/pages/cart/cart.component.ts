@@ -12,10 +12,9 @@ import { CartService } from 'src/app/services/cart.service';
 export class CartComponent implements OnInit {
 
   products = this.cartSvc.getItems();
-  priceTotal = this.cartSvc.priceTotal;
-  countCart = this.cartSvc.countCart;
-  productos$: ProductI[] | null = [];
-
+  priceTotal = this.cartSvc.getPriceTProduct();
+  countCart = this.cartSvc.getCountTotal();
+  productos$: ProductI[] = [];
 
   productI: ProductI = {
     id: 0,
@@ -32,8 +31,8 @@ export class CartComponent implements OnInit {
   constructor(private cartSvc: CartService) { }
 
   ngOnInit(): void {
+    this.productos$ = this.cartSvc.getStoreProduct();
     console.log(this.products); 
-    this.cartSvc.products$.subscribe((res) => (this.productos$ = res));
     console.log(this.productos$);
   }
 
@@ -42,14 +41,16 @@ export class CartComponent implements OnInit {
     this.products = [];
     this.cartSvc.priceTotal = 0;
     this.cartSvc.countCart = 0;
+    this.cartSvc.redirectTo('/cart');
   }
 
   deleteItem(product: ProductI): void {
-    this.cartSvc.deleteItem(product);
     if(product.price) {
       this.cartSvc.restPriceT(product.price);
       this.priceTotal = this.priceTotal - parseInt(product.price, 10);
       this.countCart = this.countCart - 1;
     }
+    this.cartSvc.deleteItem(product);
+    this.cartSvc.redirectTo('/cart');
   }
 }

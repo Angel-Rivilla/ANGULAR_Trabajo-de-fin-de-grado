@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ProductI } from '../interface/product';
@@ -16,15 +17,9 @@ export class CartService {
   priceTotal = 0;
   countCart = 0;
 
-  private productIn = new BehaviorSubject<ProductI[] | null>(null);
-  
-  get products$(): Observable<ProductI[] | null>{
-    this.productIn.next(JSON.parse(this.getStoreProduct() || '{}'));
-    return this.productIn.asObservable();
-  }
-
   constructor(private authSvc: AuthService,
-              private productSvc: ProductService) {
+              private productSvc: ProductService,
+              private router: Router) {
     this.authSvc.isLogged.subscribe(res => {
       console.log(res);
       if(res){
@@ -37,7 +32,7 @@ export class CartService {
     const pos = this.items.findIndex(p => p.id === product.id) 
     //if(pos == -1){
       this.items.push(product);
-      this.saveProduct(this.items);
+      this.saveProduct(this.items, this.priceTotal, this.countCart);
     //}
   }
 
@@ -46,12 +41,22 @@ export class CartService {
   }
 
   getStoreProduct(){
-    return localStorage.getItem('producto');
+    return JSON.parse(localStorage.getItem('producto') || '{}');
+  }
+
+  getPriceTProduct(){
+    return JSON.parse(localStorage.getItem('priceTotal') || '{}');
+  }
+
+  getCountTotal(){
+    return JSON.parse(localStorage.getItem('countCart') || '{}');
   }
 
   clearCart() {
     this.items = [];
     this.countCart = 0;
+    this.priceTotal = 0;
+    this.saveProduct(this.items, this.priceTotal, this.countCart);
     return this.items;
   }
   
@@ -59,6 +64,7 @@ export class CartService {
     const eliminar = this.items.findIndex(p => p.id === product.id); 
     this.items.splice(eliminar, 1);
     this.countCart = this.countCart - 1;
+    this.saveProduct(this.items, this.priceTotal, this.countCart);
   }
 
   getProducts(){
@@ -73,7 +79,14 @@ export class CartService {
     return this.priceTotal = this.priceTotal - parseInt(price, 10);
   }
 
-  public saveProduct(producto: ProductI[] | null): void{
+  public saveProduct(producto: ProductI[],priceTotal: number, countCart: number): void{
     localStorage.setItem('producto', JSON.stringify(producto));
+    localStorage.setItem('priceTotal', JSON.stringify(priceTotal));
+    localStorage.setItem('countCart', JSON.stringify(countCart));
+  }
+
+  redirectTo(uri:string){
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate([uri]));
   }
 }

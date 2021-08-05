@@ -25,8 +25,6 @@ export class Product {
     price: string;
 
     @Column()
-    @MaxLength(5)
-    @MinLength(1)
     @IsNotEmpty()
     count: number;
 

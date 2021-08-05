@@ -9,6 +9,8 @@ router.get('/', ProductController.getAll);
 
 router.get('/:id', ProductController.getById);
 
+router.put('/title', ProductController.getByTitle);
+
 router.post('/', checkJwt, ProductController.newProduct);
 
 router.patch('/:id', checkJwt, ProductController.editProduct);

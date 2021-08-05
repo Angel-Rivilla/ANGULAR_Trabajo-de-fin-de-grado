@@ -33,8 +33,9 @@ export class ProductController {
     };
 
     static newProduct = async (req: Request, res: Response) => {
-        const {title, description, price, count, image, createdUser} = req.body;
+        const {title, description, price, image, createdUser} = req.body;
         const product = new Product();
+        const count = 1;
 
         product.title = title;
         product.description = description;
@@ -106,6 +107,26 @@ export class ProductController {
 
         productRepository.delete(id);
         res.status(201).json({message: 'Product deleted'});
+    };
+
+    static getByTitle = async (req: Request, res: Response) => {
+        const {createdUser} = req.body;
+        const productRepository = getRepository(Product);
+        const products: Product[] = [];
+        let count = 0;
+        let product: Product;
+
+        if(!(createdUser)){
+            return res.status(400).json({message:'Title is required!'});
+        }
+
+        try{
+            product = await productRepository.findOneOrFail({where: {createdUser}});
+            products.push(product);
+            res.status(201).json({products, count});
+        } catch (err){
+            res.status(404).json({message: 'Not result'});
+        }
     };
 }
 

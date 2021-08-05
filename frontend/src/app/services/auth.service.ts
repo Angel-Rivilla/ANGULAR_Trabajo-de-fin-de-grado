@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map} from 'rxjs/operators';
-import { UserBD, UserI, UserReset, UserResponseI} from '../interface/user';
+import { UserI, UserReset, UserResponseI} from '../interface/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 
@@ -68,7 +68,6 @@ export class AuthService {
     return this.http.post<UserResponseI>(`${environment.API_URL}/auth/login`, authData)
       .pipe(map((res:UserResponseI) => {
         this.saveLocalStorage(res.token,res.role,authData.username);
-        this.tokenIn.next(res.token);
         this.loggedIn.next(true);
         this.usernameIn.next(authData.username);
         this.roleIn.next(res.role);
@@ -99,9 +98,11 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     localStorage.removeItem('user');
+    localStorage.removeItem('resetToken');
     this.loggedIn.next(false);
     this.userToken.next(null);
     this.usernameIn.next(null);
+    this.tokenIn.next(null);
     this.roleIn.next(null);
     this.router.navigate(['/login']);
   }
@@ -126,7 +127,7 @@ export class AuthService {
   }
 
   private saveLocalStorage(token: string, role: string, user: string): void{
-    localStorage.setItem('token', token);
+    localStorage.setItem('token', token); 
     localStorage.setItem('role', role);
     localStorage.setItem('user', user);
   }

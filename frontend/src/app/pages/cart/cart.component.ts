@@ -14,6 +14,9 @@ export class CartComponent implements OnInit {
   products = this.cartSvc.getItems();
   priceTotal = this.cartSvc.priceTotal;
   countCart = this.cartSvc.countCart;
+  productos$: ProductI[] | null = [];
+
+
   productI: ProductI = {
     id: 0,
     title: '',
@@ -30,7 +33,8 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.products); 
-    
+    this.cartSvc.products$.subscribe((res) => (this.productos$ = res));
+    console.log(this.productos$);
   }
 
   clearCart(){

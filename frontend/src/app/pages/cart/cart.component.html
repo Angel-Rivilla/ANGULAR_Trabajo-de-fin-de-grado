@@ -1,7 +1,7 @@
-<div *ngIf = "products.length > 0">
+<div>
     <div class="row">
         <div class="col-md-8">
-            <div *ngFor="let product of products">
+            <div *ngFor="let product of productos$">
                 <div>
                     <div class="row">
                         <div class="col-md-12">
@@ -47,7 +47,3 @@
     </button>
 </div>
 
-
-
-
-<p *ngIf = "products.length <= 0">cart vacio</p>

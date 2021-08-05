@@ -16,6 +16,13 @@ export class CartService {
   priceTotal = 0;
   countCart = 0;
 
+  private productIn = new BehaviorSubject<ProductI[] | null>(null);
+  
+  get products$(): Observable<ProductI[] | null>{
+    this.productIn.next(JSON.parse(this.getStoreProduct() || '{}'));
+    return this.productIn.asObservable();
+  }
+
   constructor(private authSvc: AuthService,
               private productSvc: ProductService) {
     this.authSvc.isLogged.subscribe(res => {
@@ -30,11 +37,16 @@ export class CartService {
     const pos = this.items.findIndex(p => p.id === product.id) 
     //if(pos == -1){
       this.items.push(product);
+      this.saveProduct(this.items);
     //}
   }
 
   getItems() {
     return this.items;
+  }
+
+  getStoreProduct(){
+    return localStorage.getItem('producto');
   }
 
   clearCart() {
@@ -59,5 +71,9 @@ export class CartService {
 
   restPriceT(price: string){
     return this.priceTotal = this.priceTotal - parseInt(price, 10);
+  }
+
+  public saveProduct(producto: ProductI[] | null): void{
+    localStorage.setItem('producto', JSON.stringify(producto));
   }
 }

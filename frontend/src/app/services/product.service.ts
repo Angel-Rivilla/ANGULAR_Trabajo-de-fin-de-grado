@@ -16,10 +16,6 @@ export class ProductService {
     .get<ProductI[]>(`${environment.API_URL}/products`);
   }
 
-  handlerError(handlerError: any): OperatorFunction<ProductI[], any> {
-    throw new Error('Method not implemented.');
-  }
-
   getProduct(id: string){
     return this.http.get(`${environment.API_URL}/products/${id}`);
   }

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -21,7 +22,8 @@ export class PasswordComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
 
   constructor(private fb: FormBuilder,
-              private authSvc: AuthService) { }
+              private authSvc: AuthService,
+              private router: Router) { }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -39,6 +41,8 @@ export class PasswordComponent implements OnInit, OnDestroy {
         .subscribe(
           res => {
             console.log(res);
+            alert('Password changed');
+            this.router.navigate(['/login']);
           },
           err => console.error(err)
         )

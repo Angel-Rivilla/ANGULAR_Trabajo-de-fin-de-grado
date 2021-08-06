@@ -1,0 +1,423 @@
+#header {
+    font-family: proxima-nova,Arial,sans-serif;
+    font-size: 14px;
+    background-color: #4a4a4a;
+    z-index: 0;
+    position: relative;
+}
+
+#header, #header_search_area, #sub-menu {
+    line-height: 1;
+}
+
+#header #widget-cs-row {
+    background-image: linear-gradient(to right,#000,#333 48%,#000);
+    display: none;
+    box-shadow: 0 0 0 1px #333;
+    position: relative;
+    z-index: 0;
+}
+
+.ml-auto, .mx-auto {
+    margin-left: auto!important;
+}
+
+.mr-auto, .mx-auto {
+    margin-right: auto!important;
+}
+
+.w-100 {
+    width: 100%!important;
+}
+
+#header #widget-cs-row .header-container {
+    opacity: 0;
+    transition: height .35s ease-in-out,opacity .25s;
+}
+
+.header-container {
+    padding-right: 12px;
+    padding-left: 12px;
+    width: 100%;
+    max-width: 2200px;
+    min-width: 992px;
+    margin: 0 auto;
+}
+
+#header_customer_support {
+    height: 192px;
+    font-family: proxima-nova,Arial,sans-serif;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #fff;
+}
+
+#header_customer_support .widget-cs-info {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    display: inline-grid;
+}
+.pr-0, .px-0 {
+    padding-right: 0!important;
+}
+.col-4 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+}
+
+.pl-0, .px-0 {
+    padding-left: 0!important;
+}
+
+.pr-0, .px-0 {
+    padding-right: 0!important;
+}
+
+.col-7 {
+    flex: 0 0 58.33333%;
+    max-width: 58.33333%;
+}
+
+
+#header_customer_support .widget-cs-info .widget-cs-info-header {
+    font-size: 24px;
+    line-height: 33px;
+    font-family: proxima-nova,Arial,sans-serif;
+    font-weight: 500;
+}
+
+#header_customer_support .widget-cs-info .widget-hr {
+    background-color: #ddd;
+    margin: 24px 0;
+    border-top: none;
+}
+
+hr {
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+}
+
+#header #header_mask {
+    height: 40px;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+    background-color: #4a4a4a;
+}
+
+#info_top_bar {
+    font-family: proxima-nova,Arial,sans-serif;
+    font-size: 13px;
+    height: 100%;
+    max-height: 40px;
+    color: #fff;
+}
+
+#header_search_bar{
+    background-color: #333;
+    color: #fff;
+    width: 100%;
+    z-index: 1014;
+    top: 0;
+    font-size: 12px;
+    position: sticky;
+    position: -webkit-sticky;
+    transition: top .35s ease-in-out;
+}
+
+#header_search_bar #header_search_area {
+    font-family: proxima-nova,Arial,sans-serif;
+    height: 56px;
+}
+
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+}
+
+.header-container {
+    padding-right: 12px;
+    padding-left: 12px;
+    width: 100%;
+    max-width: 2200px;
+    min-width: 992px;
+    margin: 0 auto;
+}
+
+.col {
+    flex-basis: 0;
+    flex-grow: 1;
+    min-width: 0;
+    max-width: 100%;
+}
+
+#info_top_bar .shipping-msg {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    line-height: 15px;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#info_top_bar .choose-country {
+    padding: 0;
+    float: none;
+    height: 100%;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#info_top_bar .choose-country .op_left {
+    padding: 0 10px 0 20px;
+}
+
+#info_top_bar .choose-country a {
+    color: #fff;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+a {
+    color: #333;
+    text-decoration: none;
+    margin: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: 0 0;
+    padding: 0;
+}
+
+#header_search_bar #header_search_area .row {
+    height: 100%;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -12px;
+    margin-left: -12px;
+}
+
+#header_search_bar #header_search_area {
+    font-family: proxima-nova,Arial,sans-serif;
+    height: 56px;
+}
+
+
+#header_search_bar #header_search_area .login-top-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#header_search_bar .login-links-holder {
+    color: #fff;
+    align-content: center;
+    align-items: center;
+    display: table;
+}
+
+
+
+#header_search_bar #header_search_area .top-mini-cart-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#header_search_bar .show-mini-cart:visited, #header_search_bar .show-mini-cart:link {
+    color: #fff;
+}
+
+#header_search_bar .top-minicart-info {
+    display: flex;
+    align-items: center;
+    min-width: 30px;
+}
+
+#header_search_bar .top-minicart-info__num-items {
+    background-color: #fff;
+    top: 12px;
+    font-size: 10px;
+    font-weight: 400;
+    margin-left: 16px;
+    background-clip: padding-box;
+    border-radius: 7px;
+    color: #252525;
+    position: absolute;
+    height: 14px;
+    width: 14px;
+    text-align: center;
+    padding-top: .1rem;
+}
+
+#header_search_bar #header_search_area .top-help-link {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#header_search_bar #header_search_area .login-links-holder-right {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.home-container {
+    width: 100%;
+    max-width: 2200px;
+    margin-right: auto;
+    margin-left: auto;
+    min-height: 100vh;
+}
+
+
+
+#header_search_bar #header_search_area .logo-container img {
+    width: 132px;
+}
+
+
+.nav-link {
+    display: block;
+    padding: .5rem 1rem;
+    color: #fff;
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+
+#header_search_bar #header_search_area #the_h_menu .menu-btn {
+    cursor: pointer;
+    width: 56px;
+    height: 56px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#header_search_bar #header_search_area .logo-container {
+    display: flex;
+}
+
+#header_search_bar #header_search_area .logo-container a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-self: start;
+}
+
+#header_search_bar #header_search_area #the_h_menu {
+    padding: 0;
+}
+
+#header_search_bar #header_search_area #the_h_menu .menu-btn>i {
+    padding-top: 3px;
+    font-size: 24px;
+    display: block;
+}
+
+#header_search_bar #header_search_area #the_h_menu .menu-btn .fa-bars-exit {
+    font-size: 27px;
+    display: none;
+}
+
+#quick-search_container {
+    font-family: proxima-nova,Arial,sans-serif;
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.loyalty-header-container {
+    position: relative;
+}
+
+.loyalty-header-container .loyalty-tooltip-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: auto;
+    height: 100%;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.loyalty-header-container .loyalty-tooltip-link i {
+    margin: 0 4px 0 0;
+    font-size: 16px;
+}
+
+#header_search_bar #header_search_area .top-help-container #top-help-link i {
+    font-size: 16px;
+    padding-right: 5px;
+    margin-top: 3px;
+    display: block;
+}
+
+#header_search_bar #header_search_area .top-help-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#header_search_bar #header_search_area .top-help-container #top-help-link {
+    color: #fff;
+    line-height: 1;
+    display: flex;
+    height: 100%;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    align-items: center;
+    cursor: pointer;
+}
+
+#header_search_bar .login-links-holder .login-links-holder-left {
+    padding-right: 6px;
+    border-right: 1px solid #fff;
+}
+
+#header_search_bar .login-links-holder .login-links-holder-left a {
+    text-align: right;
+}
+
+#header_search_bar .login-links-holder a {
+    line-height: normal;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+}
+
+#header_search_bar .login-links-holder .login-links-holder-right {
+    padding-left: 6px;
+}
+
+#header_search_bar .login-links-holder span {
+    height: 15px;
+    display: table-cell;
+}
+
+.disableDiv {
+    pointer-events:none;
+}
+
+.enableDiv {
+    cursor: pointer;
+}

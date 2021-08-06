@@ -12,3 +12,19 @@ mat-sidenav-container {
     height: 100%;
 }
 
+.home-container {
+    width: 95%;
+    max-width: 2200px;
+    margin-right: auto;
+    margin-left: auto;
+    min-height: 100vh;
+}
+
+#content {
+    min-height: 768px!important;
+}
+
+#footer {
+    width: 100%;
+    background-color: #eee;
+}

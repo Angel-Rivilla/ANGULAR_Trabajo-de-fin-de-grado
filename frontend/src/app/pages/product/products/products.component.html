@@ -1,9 +1,50 @@
-<div class="col-md-4" *ngFor="let product of products">
-    <div class="card text-center mt-3">
-        <img [routerLink] = "['product/details', product.id]" [src]="product.image">
-        <div class="img">
-            <a> {{product.title}} </a>
-            <a> {{product.price}} </a>
+<div class="home-block">
+    <H2>Novedades</H2>
+    <div class="home-block-content" style="height: 226px; visibility: visible;">
+        <div id="flecha-izquierda" class="block-back">
+            <span class="fal fa-chevron-left"></span>
+        </div>
+        <div dir="ltr" class="home-products-scroll">
+            <div class="block-content" style="height: 226px;">
+                <div class="block-snaps">
+                    <div class="block-snap" style="max-width: 1130px; margin-left: calc(var(--vw, 1vw) * 3);"></div>
+                    <div class="block-snap" style="max-width: 1130px"></div>
+                    <div class="block-snap block-snap-last" style="width: 262px"></div>
+                </div>
+                <div class="blocks">
+                    <div class="slider-margin" style="width: calc(var(--vw, 1vw) * 3);"></div>
+                    <div *ngFor="let product of products" class="slider-itens">
+                        <div [routerLink] = "['product/details', product.id]" class="slider-item" style="width: 226px;">
+                            <div class="slider-item-content" style="border-width: 2px;">
+                                <a class="w-100 h-100 slider-item-href"></a>
+                                <div class="w-100 h-100" data-mub-ok = true>
+                                    <img 
+                                    [src]="product.image"
+                                    class="w-100 h-100">
+                                </div>
+                                <div class="shadow-bottom">
+                                    <div class="row m-0 w-100">
+                                        <div class="col p-0">
+                                            <a>
+                                                <span class="name-label">
+                                                    {{product.title}}
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <div class="col-auto p-0">
+                                            <p class="price-strikethrough"></p>
+                                            <p class="price-label">{{product.price}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block-next">
+            <span id="flecha-derecha" class="fal fa-chevron-right"></span>
         </div>
     </div>
 </div>

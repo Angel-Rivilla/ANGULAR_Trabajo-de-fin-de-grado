@@ -38,4 +38,6 @@ export class ProductsComponent implements OnInit {
       err=> console.error(err)
     );
   }
+
+
 }

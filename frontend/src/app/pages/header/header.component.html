@@ -1,70 +1,106 @@
-<div *ngIf="helpOpen">
-  <app-info></app-info>
+<div id="header">
+  <div *ngIf="helpOpen" class="w-100 mx-auto open" id="widget-cs-row" style="display: block">
+    <div class="header-container" style="height: 192px; opacity: 1">
+      <div class="row" id="header_customer_support">
+        <div class="col-4 pr-0 widget-cs-info">
+          <div class="widget-cs-info-header text-center">
+            ¿Necesitas ayuda?
+          </div>
+          <hr class="widget-hr">
+        </div>
+        <div class="col-7 px-0 widget-cs-info">
+        </div>
+        <div class="col-1 pl-0 widget-cs-info">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="header_mask">
+    <div id="info_top_bar" class="header-container">
+      <div class="row h-100">
+        <div class="col pr-10">
+        </div>
+        <div class="col">
+          <div class="shipping-msg">
+          </div>
+        </div>
+        <div class="col pr-0">
+          <div class="choose-country">
+            <a id="choose-country">
+            </a>
+            <a id="choose-country">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<nav [ngClass]= "!utilsSvc.toggleAdmin ? 'navbar navbar-expand-lg navbar-light bg-light': 'navbar navbar-expand-lg navbar-light bg-light'">
-  <div class="container-fluid">
-    <ng-container *ngIf="!utilsSvc.toggleAdmin && isAdmin != 'admin'; else viewAdmin">
-      <a class="navbar-brand" routerLink="/">ngMysql Users</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li *ngIf = "!isLogged || isAdmin != 'admin'" class="nav-item">
-            <a type="button" class="nav-link" (click)="helpOpen = !helpOpen" routerLinkActive="active">
-              <i class="fas fa-question-circle"></i>
-              Ayuda
+<div id="header_search_bar" class="sticky-top">
+  <div id="header_search_area" class="header-container">
+    <div class="row">
+      <div class="col-auto">
+        <div class="row">
+          <div id="the_h_menu" class="col-auto">
+            <div [ngClass]= "isAdmin != 'admin' ? 'disableDiv': 'enableDiv'" class="menu-btn">
+              <i (click)="onToggleSidenav()" class="fal fa-bars"></i>
+              <i class="fas fa-bars-exit"></i>
+            </div>
+          </div>
+          <div [routerLink]="'/'" class="logo-container col-auto">
+            <a id="logo">
+              HOME
             </a>
-          </li>
-          <li *ngIf = "!isLogged; else viewLogout" class="nav-item">
-            <a class="nav-link" [routerLink]="'/login'" routerLinkActive="active">
-              <i class="fas fa-sign-in-alt"></i>
-              Login
-            </a>
-          </li>
-          <li *ngIf = "!isLogged || isAdmin != 'admin'" (click)="onNavigateCart()" class="nav-item">
-            <a type="button" class="nav-link" routerLinkActive="active">
-              <i class="fas fa-shopping-cart"></i>
-            </a>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
-    </ng-container>
-  </div>
-</nav>
+      <div class="col">
+        <div id="quick-search_container">
 
-<ng-template #viewLogout>
-  <li *ngIf="!utilsSvc.toggleAdmin" (click) = "onLogout()" class="nav-item">
-    <a type= "button" class="nav-link" routerLinkActive="active">
-      <i class="fas fa-sign-out-alt"></i>
-      LogOut
-    </a>
-  </li>
-</ng-template>
-
-<ng-template #viewAdmin>
-   <a *ngIf="utilsSvc.toggleAdmin" class="navbar-brand" routerLink="/admin"> Admin Panel </a>
-   <a *ngIf="!utilsSvc.toggleAdmin" class="navbar-brand" routerLink="/">ngMysql Users</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li *ngIf = "!isLogged; else viewLogout" class="nav-item">
-          <a class="nav-link" [routerLink]="'/login'" routerLinkActive="active">
-            <i class="fas fa-sign-in-alt"></i>
-            Login
-          </a>
-        </li>
-        <li *ngIf = "isLogged && isAdmin == 'admin'" (click)="onToggleSidenav()" [routerLink]="'/admin'" class="nav-item">
-          <a type= "button" class="nav-link" routerLinkActive="active">
-            <i *ngIf="utilsSvc.toggleAdmin" class="fas fa-unlock-alt"></i>
-            <i *ngIf="!utilsSvc.toggleAdmin" class="fas fa-lock"></i>
-            Admin
-          </a>
-        </li>
-      </ul>
+        </div>
+      </div>
+      <div class="col-auto">
+        <div class="row">
+          <div class="top-help-container col-auto">
+            <a id="top-help-link" class="top-help-link" *ngIf = "!isLogged || isAdmin != 'admin'" (click)="helpOpen = !helpOpen">
+              <i class="fas fa-question-circle"></i>
+              <span style="margin-top: 3px">Ayuda</span>
+            </a>
+          </div>
+          <div class="col-auto loyalty-header-container">
+            <a class="loyalty-tooltip-link">
+              <span style="margin-top: 3px">Golden Club</span>
+            </a>
+          </div>
+          <div class="login-top-container col-auto">
+            <div class="login-links-holder w-100">
+              <span *ngIf = "!isLogged" class="login-links-holder-left">
+                <a [routerLink]="'/login'" style="margin-top: 3px" id="login__link" class="login-links-holder__link">Identificarse</a>
+              </span>
+              <span *ngIf = "!isLogged" class="login-links-holder-right">
+                <a [routerLink]="'/register'" style="margin-top: 3px" id="register__link" class="login-links-holder">Crear Cuenta</a>
+              </span>
+              <span *ngIf = "isLogged" class="login-links-holder-right">
+                <a (click) = "onLogout()" style="margin-top: 3px" id="logout__link" class="login-links-holder">Cerrar Sesión</a>
+              </span>
+            </div>
+          </div>
+          <div class="top-mini-cart-container col-auto">
+            <a [routerLink]="'/cart'" type="button" class="show-mini-cart nav-link">
+              <div class="show-mini-cart-cont">
+                <span class="top-minicart-info">
+                  <span class="top-minicart-info_num-items d-none" id="cartItemCount">
+                  </span>
+                  <i class="fas fa-shopping-cart"></i>
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-</ng-template>
+  </div>
+</div>
+
 

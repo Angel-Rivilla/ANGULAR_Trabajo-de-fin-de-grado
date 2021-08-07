@@ -1,43 +1,145 @@
-<div class="col-md-4 offset-md-2">
-    <div class="card card-body text-center mt-3">
-        <img [src]="product.image == '' ? '/assets/NoImage.png' : product.image" class="card-img-top">
-        <h3>{{product.id}}, {{product.title == '' ? 'Product Name' : product.title}}</h3>
-    </div>
-</div>
-
-<div class="col-md-4">
-    <div class="card mt-3">
-        <div class="card-body">
-            <form>
-                <div class="form-group">
-                    {{product.title}}
-                </div>
-                <div class="form-group mt-3">
-                    Descripcion del producto: {{product.description}}
-                </div>
-                <div class="form-group mt-3">
-                    Precio: {{product.price}}
-                </div>
-                <div class="form-group mt-3">
-                    Creado por: {{product.createdUser}}
-                </div>
-                <div class="form-group mt-3">
-                    Creado el {{product.createdAt}} y actualizado el {{product.updateAt}}
-                </div>
-            </form>
+<div class="container pdp-page-content" id="pdpPageContent">
+    <div class="bg-primary row">
+        <div class="col-12">
+            <div class="product-container">
+                <ol class="product">
+                    <li><a>Detalles</a></li>
+                </ol>
+            </div>
         </div>
     </div>
-    <div *ngIf="product.createdUser != user$" class="mt-2">
-        <button (click)="addCart()" class="btn btn-info btn-block">
-            Compra ahora
-        </button>
-    </div>
-    <div *ngIf="product.createdUser == user$ && isLogged" class="mt-2">
-        <button [routerLink]="['/admin/product/edit', product.id]" class="btn btn-info btn-block">
-            Editar <i class="far fa-edit"></i>
-        </button> 
-        <button class="btn btn-danger">
-            Eliminar <i class="far fa-trash-alt"></i>
-        </button>  
-    </div>
+    <div class="row">
+        <div class="col pdp-display-section">
+            <div class="bg-dark pdp-gallery-section">
+                <div class="pdp-gallery-section">
+                    <div class="row row-img layout-seven">
+                        <div class="col-6 col-img">
+                            <div class="img-container">
+                                <div class="img-aspect-ratio"></div>
+                                <div class="img-content">
+                                    <div class>
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1200px-International_Pok%C3%A9mon_logo.svg.png"
+                                         class="img-block img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-img">
+                            <div class="img-container">
+                                <div class="img-aspect-ratio"></div>
+                                <div class="img-content">
+                                    <div class>
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1200px-International_Pok%C3%A9mon_logo.svg.png"
+                                         class="img-block img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-img">
+                            <div class="img-container">
+                                <div class="img-aspect-ratio"></div>
+                                <div class="img-content">
+                                    <div class>
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1200px-International_Pok%C3%A9mon_logo.svg.png"
+                                         class="img-block img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class=" pdp-tabs-section">
+                <div class="pdp-tabs-section">
+                    <div class="pdp-tabs">
+                        <div id="fixedDescription" class="pdp-tab selected">
+                            Descripcion
+                        </div>
+                        <div id="scrollMidInformation" class="pdp-tab">
+                            Información y cuidados
+                        </div>
+                        <div id="scrollEndComentarios" class="pdp-tab">
+                            Comentarios
+                        </div>
+                    </div>
+                    <div class="table-content-product" style="height: 226px; visibility: visible">
+                        <div class="home-description-scroll">
+                            <div class="block-content" style="height: 226px">
+                                <div class="block-snaps">
+                                    <div class="block-snap" style="max-width: 1130px; margin-left: calc(var(--vw, 1vw) * 3);"></div>
+                                    <div class="block-snap" style="max-width: 1130px"></div>
+                                    <div class="block-snap block-snap-last" style="width: 262px"></div>
+                                </div>
+                                <div class="blocks">
+                                    <div class="slider-itens">
+                                        <div class="slider-item" style="width: 65vw">
+                                            <div class="slider-item-content" style="border-width: 2px;">
+                                                <a class="w-100 h-100 slider-item-href"></a>
+                                                <div class="w-100 h-100" data-mub-ok = true>
+                                                    <div class="bg-primary">
+                                                        <div id="description">
+                                                            <div class="row">
+                                                                <div class="fade-in">
+                                                                    <table id="ele-pdp-description">
+                                                                        {{product.description}}
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slider-itens">
+                                        <div class="slider-item" style="width: 65vw">
+                                            <div class="slider-item-content" style="border-width: 2px;">
+                                                <a class="w-100 h-100 slider-item-href"></a>
+                                                <div class="w-100 h-100" data-mub-ok = true>
+                                                    <div class="bg-danger">
+                                                        <div id="description">
+                                                            <div class="row">
+                                                                <div style="display: inline" class="fade-in">
+                                                                    <table id="ele-pdp-description">
+                                                                        HOLA
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slider-itens">
+                                        <div class="slider-item" style="width: 65vw">
+                                            <div class="slider-item-content" style="border-width: 2px;">
+                                                <a class="w-100 h-100 slider-item-href"></a>
+                                                <div class="w-100 h-100" data-mub-ok = true>
+                                                    <div class="bg-dark">
+                                                        <div id="description">
+                                                            <div class="row">
+                                                                <div style="display: inline" class="fade-in">
+                                                                    <table id="ele-pdp-description">
+                                                                        HOLA
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-danger col pdp-control-section">
+        </div>
+    </div>   
 </div>
+

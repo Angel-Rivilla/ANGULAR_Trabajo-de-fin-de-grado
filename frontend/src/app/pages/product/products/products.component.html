@@ -16,7 +16,7 @@
                     <div *ngFor="let product of products" class="slider-itens">
                         <div [routerLink] = "['product/details', product.id]" class="slider-item" style="width: 226px;">
                             <div class="slider-item-content" style="border-width: 2px;">
-                                <a class="w-100 h-100 slider-item-href"></a>
+                                <a href="http://localhost:4200/product/details/{{product.id}}" class="w-100 h-100 slider-item-href"></a>
                                 <div class="w-100 h-100" data-mub-ok = true>
                                     <img 
                                     [src]="product.image"

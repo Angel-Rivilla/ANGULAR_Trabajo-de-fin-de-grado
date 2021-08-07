@@ -30,7 +30,7 @@
 }
 
 .home-block .home-block-content .home-products-scroll {
-    overflow-x: scroll;
+    overflow-x: hidden;
     position: absolute;
     height: 110%;
     top: 0;

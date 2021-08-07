@@ -18,7 +18,7 @@
                                 <div class="img-aspect-ratio"></div>
                                 <div class="img-content">
                                     <div class>
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1200px-International_Pok%C3%A9mon_logo.svg.png"
+                                        <img [src]="product.image"
                                          class="img-block img-fluid">
                                     </div>
                                 </div>
@@ -29,7 +29,7 @@
                                 <div class="img-aspect-ratio"></div>
                                 <div class="img-content">
                                     <div class>
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1200px-International_Pok%C3%A9mon_logo.svg.png"
+                                        <img [src]="product.image"
                                          class="img-block img-fluid">
                                     </div>
                                 </div>
@@ -40,7 +40,7 @@
                                 <div class="img-aspect-ratio"></div>
                                 <div class="img-content">
                                     <div class>
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1200px-International_Pok%C3%A9mon_logo.svg.png"
+                                        <img [src]="product.image"
                                          class="img-block img-fluid">
                                     </div>
                                 </div>
@@ -81,6 +81,9 @@
                                                             <div class="row">
                                                                 <div class="fade-in">
                                                                     <table id="ele-pdp-description">
+                                                                        {{product.description}}
+                                                                        {{product.description}}
+                                                                        {{product.description}}
                                                                         {{product.description}}
                                                                     </table>
                                                                 </div>

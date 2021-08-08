@@ -46,6 +46,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-6 col-img">
+                            <div class="img-container">
+                                <div class="img-aspect-ratio"></div>
+                                <div class="img-content">
+                                    <div class>
+                                        <img [src]="product.image"
+                                         class="img-block img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -142,7 +153,167 @@
             </div>
         </div>
         <div class="bg-danger col pdp-control-section">
+            <div class="row mx-0 w-100 sticky-widget">
+                <div class="row mx-0 w-100">
+                    <div class="row mx-0 w-100 control-main-container">
+                        <div class="row mx-0 w-100 product-info-section">
+                            <div class="row w-100 mx-0 px-0 info-main info-extras">
+                                <h1 class="col-10 px-0 product-name mb-2 mt-0">
+                                    {{product.title}}
+                                </h1>
+                                <div class="pr-0 col-2 add-to-favorites has-scroll-anim">
+                                    <i class="ecom-favourite-line action-popup"></i>
+                                </div>
+                                <div class="row px-0 mx-0 w-100 align-items-center has-scroll-anim">
+                                    <div class="product-rating-section col-7 pl-0">
+                                        <span class="dummy-tag"></span>
+                                        <div class="ux-rating">
+                                            <i class="fal fa-star"></i>
+                                            <i class="fal fa-star"></i>
+                                            <i class="fal fa-star"></i>
+                                            <i class="fal fa-star"></i>
+                                            <i class="fal fa-star"></i>
+                                            <span class="num-comments"> Nuevo </span>
+                                        </div>
+                                    </div>
+                                    <div class="product-points-section col-3 pl-0">
+                                        <div class="price-tag-field points-info row w-100">
+                                            <div class="row mx-0 d-flex align-items-center normal-points">
+                                                <i class="fal fa-crown"></i>
+                                                <span class="product-page-points">44</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pk-tooltip col-2 px-0"></div>
+                                </div>
+                            </div>
+                            <div class="row w-100 mx-0 cart-status">
+                                <div class="col-auto cart-status-section price-section">
+                                    <div class="col-auto text-left px-0">
+                                        <div class="col-12 px-0">
+                                            <span class="product-page-price">
+                                                {{product.price}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto cart-status-section notice-section">
+                                En Stock
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mx-0 w-100 add-to-cart-section">
+                            <div class="row mx-0 w-100">
+                                <div class="row mx-0 w-100 cart-options-section single-option">
+                                    <div class="row mx-0 cart-option-button prz-select col">
+                                        <span class="label-btn">Cantidad</span>
+                                        <i class="fal fa-chevron-down"></i>
+                                        <div class="custom-select">
+                                            <div class="selected">1</div>
+                                            <ul class="items list-hide">
+                                                <li class="item">
+                                                    <p>1</p>
+                                                    <i class="fal fa-check"></i>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-0 w-100 action-button-container">
+                        <button class="cart-buy-button">
+                            Compra ahora
+                            <div class="p-bar-btn" style="display: none;">
+                                <span class="btn-bar" style="width: 0px;">
+                                </span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="pdp-campaign-section">
+                    <div class="pdp-campaign">
+                        <div class="row mx-0 w-100">
+                            <div class="d-flex w-100"><h3>Regalos disponibles</h3></div>
+                            <div class="d-flex w-100">
+                                <ul class="cpg-item-list">
+                                    <li class="cpg-item">
+                                        <span class="item-name">Save-15</span>
+                                        <span class="popper">
+                                            <span>
+                                                <span style="display: none">
+                                                    <div class="popper">
+                                                        <div class="item-tooltip">
+                                                            <div class="row mx-0 tooltip-info">
+                                                                <div class="col-7 pl-0">
+                                                                    <span class="coupon-title">15% de descuento</span>
+                                                                </div>
+                                                                <div class="coupon-container col-5 pr-0 pl-0">
+                                                                    <div class="coupon-label">
+                                                                        <span>Save-15</span>
+                                                                    </div>
+                                                                    <div class="coupon-text-info">
+                                                                        <span class="coupon-code">Código del cupón</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <hr>
+                                                            <div class="tooltip-content">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </span>
+                                                <i class="fal fa-info-circle"></i>
+                                            </span>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>   
+    </div> 
+    <div class="bg-primary row">
+        <div class="col-12 pdp-blocks-products">
+            <div class="wrapper">
+                <h2 class="title-homepage ml-24">Los más vendidos</h2>
+                <div class="trends-block mub slick-initialized slick-slider" 
+                     style="margin: 0 23px 72px; position: relative;">
+                    <i class="fal fa-chevron-left"></i>
+                    <div class="slick-list-draggable" style="padding: 0px 50px;">
+                        <div class="slick-track" style="opacity: 1; width: 50000px; transform: translate3d(-1722px, 0px, 0px);">
+                            <div class="slider-item block-transition slick-slide slick-cloned">
+                                <a>
+                                    <div class="large-product-box d-flex block-transition">
+                                        <img class="lazyload block_img img-fluid" 
+                                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1200px-International_Pok%C3%A9mon_logo.svg.png"
+                                        >
+                                        <div class="right-box block-transition">
+                                            <p class="points-label d-flex block-transition">
+                                            </p>
+                                            <p class="text-category-label block-transition"></p>
+                                            <h3 class="text-label block-transition" style="-webkit-box-orient: vertical;">
+                                                Whey Choco Butter
+                                            </h3>
+                                            <p class="price-label block-transition">
+                                                <span>6.99$</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="d-flex like-wrapper align-items-center">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <i class="fal fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>  
 </div>
 

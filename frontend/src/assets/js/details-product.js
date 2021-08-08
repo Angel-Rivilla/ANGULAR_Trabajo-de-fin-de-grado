@@ -9,6 +9,9 @@ flechaStatica.addEventListener('click', () => {
     if(scrollX.scrollTop > 930){
         scrollX.scrollTop = 930;
     }
+    flechaStatica.classList.add('selected')
+    flechaMid.classList.remove('selected')
+    flechaEnd.classList.remove('selected')
 });
 
 flechaMid.addEventListener('click', () => {
@@ -16,6 +19,9 @@ flechaMid.addEventListener('click', () => {
     if(scrollX.scrollTop > 930){
         scrollX.scrollTop = 930;
     }
+    flechaStatica.classList.remove('selected')
+    flechaMid.classList.add('selected')
+    flechaEnd.classList.remove('selected')
 });
 
 flechaEnd.addEventListener('click', () => {
@@ -23,4 +29,7 @@ flechaEnd.addEventListener('click', () => {
     if(scrollX.scrollTop > 930){
         scrollX.scrollTop = 930;
     }
+    flechaStatica.classList.remove('selected')
+    flechaMid.classList.remove('selected')
+    flechaEnd.classList.add('selected')
 });

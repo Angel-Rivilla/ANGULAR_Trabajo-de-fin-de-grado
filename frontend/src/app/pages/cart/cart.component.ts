@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductI } from 'src/app/interface/product';
 import { CartService } from 'src/app/services/cart.service';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class CartComponent implements OnInit {
     updateAt: new Date()
   };
   
-  constructor(private cartSvc: CartService) { }
+  constructor(private cartSvc: CartService,
+              private modal: NgbModal) { }
 
   ngOnInit(): void {
     this.productos$ = this.cartSvc.getStoreProduct();
@@ -52,5 +54,9 @@ export class CartComponent implements OnInit {
     }
     this.cartSvc.deleteItem(product);
     this.cartSvc.redirectTo('/cart');
+  }
+
+  mDeleteProduct(contenido: any){
+    this.modal.open(contenido, {centered: true});
   }
 }

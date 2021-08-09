@@ -12,6 +12,7 @@
 .container {
     min-width: 992px;
 }
+
 .container {
     width: 100%;
     padding-right: 12px;
@@ -32,6 +33,13 @@
     right: -400px;
     z-index: 1014;
     border-radius: 2px;
+}
+
+.breadcrumbs-container .breadcrumbs i {
+    font-size: 12px;
+    width: 12px;
+    position: relative;
+    top: 2px;
 }
 
 .row {
@@ -299,7 +307,7 @@
     width: 100%;
     height: auto;
     background: #fff;
-    padding: 16px 16px 0;
+    padding: 16px 16px;
     border-radius: 2px;
     box-shadow: 0 1px 3px 0 rgb(0 0 0 / 5%), 0 1px 2px 0 rgb(0 0 0 / 10%);
 }
@@ -1201,3 +1209,4 @@ a {
 .pdp-blocks-products .like-wrapper i {
     display: block;
 }
+

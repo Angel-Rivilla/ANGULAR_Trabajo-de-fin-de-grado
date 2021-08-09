@@ -1,16 +1,20 @@
 <div class="container pdp-page-content" id="pdpPageContent">
-    <div class="bg-primary row">
+    <div class="row">
         <div class="col-12">
             <div class="product-container">
                 <ol class="product">
-                    <li><a>Detalles</a></li>
+                    <li style="font-family: proxima-nova,Arial,sans-serif">
+                        <a>Detalles</a>
+                        <i class="fal fa-chevron-right"></i>
+                        <a>{{product.title}}/{{product.id}}</a>
+                    </li>
                 </ol>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col pdp-display-section">
-            <div class="bg-dark pdp-gallery-section">
+            <div class="pdp-gallery-section">
                 <div class="pdp-gallery-section">
                     <div class="row row-img layout-seven">
                         <div class="col-6 col-img">
@@ -87,7 +91,7 @@
                                             <div class="slider-item-content" style="border-width: 2px;">
                                                 <a class="w-100 h-100 slider-item-href"></a>
                                                 <div class="w-100 h-100" data-mub-ok = true>
-                                                    <div class="bg-primary">
+                                                    <div>
                                                         <div id="description">
                                                             <div class="row">
                                                                 <div class="fade-in">
@@ -110,7 +114,7 @@
                                             <div class="slider-item-content" style="border-width: 2px;">
                                                 <a class="w-100 h-100 slider-item-href"></a>
                                                 <div class="w-100 h-100" data-mub-ok = true>
-                                                    <div class="bg-danger">
+                                                    <div>
                                                         <div id="description">
                                                             <div class="row">
                                                                 <div style="display: inline" class="fade-in">
@@ -130,7 +134,7 @@
                                             <div class="slider-item-content" style="border-width: 2px;">
                                                 <a class="w-100 h-100 slider-item-href"></a>
                                                 <div class="w-100 h-100" data-mub-ok = true>
-                                                    <div class="bg-dark">
+                                                    <div>
                                                         <div id="description">
                                                             <div class="row">
                                                                 <div style="display: inline" class="fade-in">
@@ -152,7 +156,7 @@
                 </div>
             </div>
         </div>
-        <div class="bg-danger col pdp-control-section">
+        <div class=" col pdp-control-section">
             <div class="row mx-0 w-100 sticky-widget">
                 <div class="row mx-0 w-100">
                     <div class="row mx-0 w-100 control-main-container">
@@ -223,7 +227,7 @@
                         </div>
                     </div>
                     <div class="row mx-0 w-100 action-button-container">
-                        <button class="cart-buy-button">
+                        <button (click)="addCart()" class="cart-buy-button">
                             Compra ahora
                             <div class="p-bar-btn" style="display: none;">
                                 <span class="btn-bar" style="width: 0px;">

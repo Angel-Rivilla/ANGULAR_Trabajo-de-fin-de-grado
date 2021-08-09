@@ -14,6 +14,7 @@ const helper = new JwtHelperService();
 export class CartService {
   items: ProductI[] = [];
   products: Observable<ProductI[]> | undefined;
+
   priceTotal = 0;
   countCart = 0;
 

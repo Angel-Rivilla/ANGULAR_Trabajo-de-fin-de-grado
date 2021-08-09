@@ -1,54 +1,187 @@
-<div *ngIf="productos$.length > 0">
-    <div class="row">
-        <div class="col-md-8">
-            <div *ngFor="let product of productos$">
-                <div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card card-body text-center mt-3">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img [src]="product.image" class="card-img-top">
+<div *ngIf="productos$.length > 0" class="row mx-0 checkout-vue chk-desktop-vue chk-index-container">
+    <div class="row mx-auto chk-breakpoint-wrapper">
+        <div class="w-0 chk-page-container chk-column-container col-8 chk-desktop-lists-container">
+                <div class="chk-prod-list-container" style="padding: 0px 16px;">
+                    <div class="list-header">
+                        <h1 class="list-title">
+                            <i class="fad fa-shopping-cart"></i>
+                            Carrito de la compra
+                        </h1>
+                        <h3 *ngIf="productos$.length == 1" class="list-subtitle">{{countCart}} producto</h3>
+                        <h3 *ngIf="productos$.length > 1" class="list-subtitle">{{countCart}} productos</h3>
+                    </div>
+                    <div class="chk-prod-card-box" *ngFor="let product of productos$">
+                        <div class="chk-prod-card">
+                            <i (click)="mDeleteProduct(modalDeleteProduct)" style="position: absolute;" class="fal fa-times"></i>
+
+                            <ng-template #modalDeleteProduct let-modal>
+                                <div class="modal-header">
+                                    <span class="modal-title">Eliminar artículo.</span>
+                                    <mat-icon class ="close" aria-label="close" type="button" (click) ="modal.dismiss()">close</mat-icon>
+                                </div>
+                                
+                                <div class="modal-body">
+                                    <h3 class="modal-body-title">¿Confirmas que deseas quitar este artículo de tu carrito?</h3>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <img style="width: 98px; height: 98px;" src={{product.image}}>
+                                        </div>
+                                        <div style="justify-content: space-between; padding: 44px 24px 24px;" class="col-md-8">
+                                            <h3 class="card-title-m"><span>Chanclas estaple</span></h3>
+                                            <h4 class="card-subtitle-m">Talla Eu:40</h4>
+                                            <div class="m-count"> Cant. 01</div>
+                                            <div class="m-price"> 5.44$</div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-8">
-                                        <p>{{product.id}} 
-                                            <i type="button" (click)="deleteItem(product)" class="fas fa-times"></i>
-                                        </p>
-                                        <p>{{product.title}}</p>
-                                        <p>{{product.description}}</p>
-                                        <p>{{product.price}}</p>
-                                        <p>{{product.createdAt}}</p>
-                                        <p>{{product.updateAt}}</p>
-                                        <p>{{product.createdUser}}</p>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <button class="btn-modal-cancelar" type="submit" (click)="modal.dismiss()">Cancelar</button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button class="btn-modal-delete" type="submit" (click)="deleteItem(product); modal.dismiss()">Eliminar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+
+                            <div class="item-card-body">
+                                <a 
+                                    class="img-link">
+                                    <img src={{product.image}}
+                                    class="card-image">
+                                </a>
+                                <div class="card-content">
+                                    <h3 class="card-title">
+                                        <a>{{product.title}}</a>
+                                    </h3>
+                                    <h4 class="card-subtitle">
+                                        Contacto: {{product.createdUser}}
+                                    </h4>
+                                    <div class="card-controls">
+                                        <div class="item-counter">
+                                            <i class="fal fa-minus-circle"></i>
+                                            <span class="item-qty">01</span>
+                                            <i class="fal fa-plus-circle"></i>
+                                        </div>
+                                        <div class="item-price-info">
+                                            <div><span class="price">{{product.price}}</span></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
+                </div>
+                <div style="padding: 8px 16px;">
+                    <div class="chk-step-container coupons-section">
+                        <div class="step-header">
+                            <h1 class="step-header-title">
+                                <i class="fas fa-tag"></i>
+                                Códigos promocionales
+                            </h1>
+                            <h3 class="step-header-subtitle">No se ha aplicado ningún cardodigo promocional</h3>
+                        </div>
+                        <div class="step-content"></div>
+                    </div>
+                    <div class="coupons-box">
+                        <form class="form-chk coupon-code formulate-form">
+                            <div class="form-group-inline">
+                                <div class="wrapper-input formulate-input col-auto">
+                                    <div class="formulate-input-wrapper">
+                                        <label class="formulate-input-label formulate-input-label-before">
+                                            Tienes un código promocional?
+                                        </label>
+                                        <div class="formulate-input-element formulate-input-element--text">
+                                            <input type="text" placeholder="código promocional" name="promoCode">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 wrapper-button formulate-input">
+                                    <div class="formulate-input-wrapper">
+                                        <div type="submit" class="formulate-input-element formulate-input-element--submit">
+                                            <button type="submit" class="submit-light">
+                                                <span class="formulate-input-element--submit--label">Aplicar</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="points-box"></div>
+        </div>
+        <div class="w-0 chk-page-container chk-column-container col-4 chk-desktop-sticky-container">
+            <div class="chk-step-container step-summary">
+                <div class="step-content summary-content">
+                    <h1 class="summary-title">Sumario</h1>
+                    <ul class="summary-list">
+                        <li class="summary-item">
+                            <span>Subtotal</span>
+                            <span class="item-detail bold">€{{priceTotal}}</span>
+                        </li>
+                        <li class="summary-item">
+                            <span>Envío</span>
+                            <span class="item-detail bold">€0</span>
+                        </li>
+                    </ul>
+                    <span class="summary-item grand-total">
+                        Total
+                        <span class="item-detail bold">{{priceTotal}}€</span>
+                    </span>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mt-3">
-                <div class="card-body" >
-                    <p>Cantidad Total: {{countCart}}</p>
-                    <p>Sumario</p>
-                    <p>Subtotal: {{priceTotal}}€</p>
-                    <p>Envío: 0€</p>
+            <div class="chk-step-container step-infos">
+                <div class="step-content infos-content">
+                    <h1 class="infos-title">Infos</h1>
+                    <ul class="infos-list">
+                        <li class="info-item">
+                            <span class="info-item">
+                                <i class="fad fa-crown">
+                                </i>
+                                Points ganados con este pedido
+                            </span>
+                            <span class="info-detail">179</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-item">
+                                <i class="fal fa-clock">
+                                </i>
+                                A partir del:
+                            </span>
+                            <span class="info-detail">11-08-2021</span>
+                        </li>
+                    </ul>
                 </div>
-                <div class="card-footer">
-                    <p>Total: {{priceTotal}}€</p>
+            </div>
+            <div class="chk-step-container chk-notices-container">
+                <div class="chk-notice">
+                    <i class="fad fa-info-circle"></i>
+                    <p>
+                        <span>Compra 5.00$ o más 
+                        para disfrutar de gastos de envío gratuitos</span>
+                    </p>
                 </div>
+            </div>
+            <div class="row mx-0" style="padding: 8px 16px;">
+                <button class="step-control-btn">Finalizar compra</button>
             </div>
         </div>
     </div>
-    <button class="btn btn-info btn-block" (click)="clearCart()">
-        Vaciar Carrito
-    </button>
+</div>
+
+<div *ngIf="productos$.length == 0" class="w-100 chk-page-container chk-index-container">
+    <div class="chk-page-container chk-empty-cart-container">
+        <i class="fal fa-shopping-cart"></i>
+        <h2 class="empty-cart-title">Tú carrito de la compra esta vacío</h2>
+        <h1 class="empty-cart-subTitle">Empieza a añadir productos a tú carrito</h1>
+    </div>
+
 </div>
 
 
-<div *ngIf="productos$.length <= 0">
-    NOELIA ERES UNA CESTA
-</div>
 

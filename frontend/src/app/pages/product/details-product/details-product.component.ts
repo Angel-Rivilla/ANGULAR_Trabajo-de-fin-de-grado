@@ -4,6 +4,7 @@ import { ProductI } from 'src/app/interface/product';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-details-product',
@@ -41,6 +42,7 @@ export class DetailsProductComponent implements OnInit {
     this.getProducts();
     this.authSvc.usernameLogged.subscribe((res) => (this.user$ = res))
     this.authSvc.isLogged.subscribe((res) => (this.isLogged =  res))
+
     const params = this.activedRoute.snapshot.params;
     if(params.id){
       this.productSvc.getProduct(params.id).
@@ -79,5 +81,13 @@ export class DetailsProductComponent implements OnInit {
       this.cartSvc.countCart = this.cartSvc.countCart + 1;
     };
     this.cartSvc.addProduct(this.product);
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Your work has been saved',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    
   }
 }

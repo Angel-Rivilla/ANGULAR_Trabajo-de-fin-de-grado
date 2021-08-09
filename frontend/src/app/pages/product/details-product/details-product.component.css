@@ -962,7 +962,6 @@
     position: relative;
     top: 0;
     left: 0;
-    display: block;
 }
 
 .trends-block .slider-item {
@@ -1177,4 +1176,28 @@ a {
     -moz-transition: all .4s linear;
     -o-transition: all .4s linear;
     transition: all .4s linear;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+    margin: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: 0 0;
+    padding: 0;
+}
+
+.trends-block .slider-item .like-wrapper .ecom-favourite-line, .trends-block .slider-item .like-wrapper .ecom-favourite-full {
+    font-size: 24px;
+    color: #000;
+}
+
+.trends-block .like-wrapper .ecom-favourite-line, .trends-block .like-wrapper .ecom-favourite-full, .home-products-block .like-wrapper .ecom-favourite-line, .home-products-block .like-wrapper .ecom-favourite-full {
+    font-size: 24px;
+    vertical-align: bottom;
+    color: #fff;
+}
+.pdp-blocks-products .like-wrapper i {
+    display: block;
 }

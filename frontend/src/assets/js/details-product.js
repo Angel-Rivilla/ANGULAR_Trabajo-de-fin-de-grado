@@ -3,6 +3,10 @@ const scrollX= document.querySelector('.mat-drawer-content');
 const flechaStatica = document.getElementById('fixedDescription');
 const flechaMid = document.getElementById('scrollMidInformation');
 const flechaEnd = document.getElementById('scrollEndComentarios');
+
+const fila3 = document.querySelector('.slick-list');
+const sellFlechaLeft = document.getElementById('sellArrowLeft');
+const sellFlechaRight = document.getElementById('sellArrowRight');
     
 flechaStatica.addEventListener('click', () => {
     fila2.scrollLeft = 0;
@@ -32,4 +36,12 @@ flechaEnd.addEventListener('click', () => {
     flechaStatica.classList.remove('selected')
     flechaMid.classList.remove('selected')
     flechaEnd.classList.add('selected')
+});
+
+sellFlechaLeft.addEventListener('click', () => {
+    fila3.scrollLeft -= fila3.offsetWidth;
+});
+
+sellFlechaRight.addEventListener('click', () => {
+    fila3.scrollLeft += fila3.offsetWidth;
 });

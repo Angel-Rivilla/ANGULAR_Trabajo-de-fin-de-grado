@@ -38,9 +38,9 @@ export class DetailsProductComponent implements OnInit {
               private authSvc: AuthService) {}
 
   ngOnInit(): void {
+    this.getProducts();
     this.authSvc.usernameLogged.subscribe((res) => (this.user$ = res))
     this.authSvc.isLogged.subscribe((res) => (this.isLogged =  res))
-
     const params = this.activedRoute.snapshot.params;
     if(params.id){
       this.productSvc.getProduct(params.id).

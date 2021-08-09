@@ -179,8 +179,8 @@
                                     <div class="product-points-section col-3 pl-0">
                                         <div class="price-tag-field points-info row w-100">
                                             <div class="row mx-0 d-flex align-items-center normal-points">
-                                                <i class="fal fa-crown"></i>
-                                                <span class="product-page-points">44</span>
+                                                <i class="fal fa-crown"><span class="product-page-points">44</span></i>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -276,41 +276,48 @@
             </div>
         </div>
     </div> 
-    <div class="bg-primary row">
+    <div class="row">
         <div class="col-12 pdp-blocks-products">
             <div class="wrapper">
                 <h2 class="title-homepage ml-24">Los más vendidos</h2>
                 <div class="trends-block mub slick-initialized slick-slider" 
                      style="margin: 0 23px 72px; position: relative;">
-                    <i class="fal fa-chevron-left"></i>
-                    <div class="slick-list-draggable" style="padding: 0px 50px;">
-                        <div class="slick-track" style="opacity: 1; width: 50000px; transform: translate3d(-1722px, 0px, 0px);">
-                            <div class="slider-item block-transition slick-slide slick-cloned">
-                                <a>
-                                    <div class="large-product-box d-flex block-transition">
-                                        <img class="lazyload block_img img-fluid" 
-                                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1200px-International_Pok%C3%A9mon_logo.svg.png"
-                                        >
-                                        <div class="right-box block-transition">
-                                            <p class="points-label d-flex block-transition">
-                                            </p>
-                                            <p class="text-category-label block-transition"></p>
-                                            <h3 class="text-label block-transition" style="-webkit-box-orient: vertical;">
-                                                Whey Choco Butter
-                                            </h3>
-                                            <p class="price-label block-transition">
-                                                <span>6.99$</span>
-                                            </p>
+                    <i id="sellArrowLeft" class="fal fa-chevron-left"></i>
+                    <div class="slick-list draggable" style="padding: 0px 50px; overflow: hidden; scroll-behavior: smooth">
+                        <div class="row" style="flex-wrap: nowrap">
+                            <div *ngFor="let product of products" class="slick-track" style="opacity: 1; flex-shrink: 1" >
+                                <div class="slider-item block-transition slick-slide slick-cloned">
+                                    <a>
+                                        <div class="large-product-box d-flex block-transition" style="box-shadow: 1px 1px 1px rgb(0 0 0 / 50%); 
+                                        border-radius: 2px;">
+                                            <img class="lazyload block_img img-fluid"
+                                                src={{product.image}}
+                                            >
+                                            <div class="right-box block-transition">
+                                                <p class="points-label d-flex block-transition">
+                                                    <i class="fad fa-crown"></i>
+                                                    Points
+                                                </p>
+                                                <p class="text-category-label block-transition"></p>
+                                                <h3 class="text-label block-transition" style="-webkit-box-orient: vertical;">
+                                                    {{product.title}}
+                                                </h3>
+                                                <p class="price-label block-transition">
+                                                    <span>{{product.price}}</span>
+                                                </p>
+                                            </div>
                                         </div>
+                                    </a>
+                                    <div class="d-flex like-wrapper align-items-center">
+                                        <a>
+                                            <i class="fal fa-heart"></i>
+                                        </a>
                                     </div>
-                                </a>
-                                <div class="d-flex like-wrapper align-items-center">
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <i class="fal fa-chevron-right"></i>
+                    <i id="sellArrowRight" class="fal fa-chevron-right"></i>
                 </div>
             </div>
         </div>

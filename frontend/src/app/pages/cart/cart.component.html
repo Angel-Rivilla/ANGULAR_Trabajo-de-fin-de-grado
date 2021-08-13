@@ -1,6 +1,8 @@
+
+
 <div *ngIf="productos$.length > 0" class="row mx-0 checkout-vue chk-desktop-vue chk-index-container">
     <div class="row mx-auto chk-breakpoint-wrapper">
-        <div class="w-0 chk-page-container chk-column-container col-8 chk-desktop-lists-container">
+        <div class="w-100 chk-page-container chk-column-container col-8 chk-desktop-lists-container">
                 <div class="chk-prod-list-container" style="padding: 0px 16px;">
                     <div class="list-header">
                         <h1 class="list-title">
@@ -27,10 +29,10 @@
                                             <img style="width: 98px; height: 98px;" src={{product.image}}>
                                         </div>
                                         <div style="justify-content: space-between; padding: 44px 24px 24px;" class="col-md-8">
-                                            <h3 class="card-title-m"><span>Chanclas estaple</span></h3>
-                                            <h4 class="card-subtitle-m">Talla Eu:40</h4>
+                                            <h3 class="card-title-m"><span>{{product.title}}</span></h3>
+                                            <h4 class="card-subtitle-m">Posted by {{product.createdUser}}</h4>
                                             <div class="m-count"> Cant. 01</div>
-                                            <div class="m-price"> 5.44$</div>
+                                            <div class="m-price">{{product.price}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -115,7 +117,7 @@
                 </div>
                 <div class="points-box"></div>
         </div>
-        <div class="w-0 chk-page-container chk-column-container col-4 chk-desktop-sticky-container">
+        <div class="w-100 chk-page-container chk-column-container col-4 chk-desktop-sticky-container">
             <div class="chk-step-container step-summary">
                 <div class="step-content summary-content">
                     <h1 class="summary-title">Sumario</h1>

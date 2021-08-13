@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -16,6 +17,8 @@ export class HeaderComponent implements OnInit, OnDestroy{
   isLogged = false;
   helpOpen = false;
   isAdmin: string | null = null;
+  loginModal = 1;
+  registerModal = 0;
   
   private subscription: Subscription = new Subscription();
   private destroy$ = new Subject<any>();
@@ -25,7 +28,8 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
   constructor(public authSvc: AuthService, 
               public utilsSvc: UtilsService,
-              private router: Router) { }
+              private router: Router,
+              private modal: NgbModal) { }
 
   ngOnDestroy(): void {
     this.destroy$.next({});
@@ -64,5 +68,9 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
   onNavigateCart(){
     this.router.navigate(['cart']);
+  }
+
+  mLogin(contenido: any){
+    this.modal.open(contenido, {size:'lg'});
   }
 }

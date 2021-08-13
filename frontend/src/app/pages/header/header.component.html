@@ -76,10 +76,10 @@
           <div class="login-top-container col-auto">
             <div class="login-links-holder w-100">
               <span *ngIf = "!isLogged" class="login-links-holder-left">
-                <a [routerLink]="'/login'" style="margin-top: 3px" id="login__link" class="login-links-holder__link">Identificarse</a>
+                <a type="button" (click)="mLogin(modalLogin)" style="margin-top: 3px" id="login__link" class="login-links-holder__link">Identificarse</a>
               </span>
               <span *ngIf = "!isLogged" class="login-links-holder-right">
-                <a [routerLink]="'/register'" style="margin-top: 3px" id="register__link" class="login-links-holder">Crear Cuenta</a>
+                <a type="button" (click)="mLogin(modalLogin)" style="margin-top: 3px" id="register__link" class="login-links-holder">Crear Cuenta</a>
               </span>
               <span *ngIf = "isLogged" class="login-links-holder-right">
                 <a (click) = "onLogout()" style="margin-top: 3px" id="logout__link" class="login-links-holder">Cerrar Sesión</a>
@@ -102,5 +102,28 @@
     </div>
   </div>
 </div>
+
+<ng-template #modalLogin let-modal>
+  <div class="contenedor">
+    <div class="menu-login">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="row titleLogin text-center">
+            <span style="margin-top: 50px" type="button" (click)="loginModal = 1; registerModal = 0">IDENTIFICARSE</span>
+          </div>
+          <div class="row titleRegister text-center">
+            <span style="margin-top: 50px" type="button" (click)="loginModal = 0; registerModal = 1">NUEVA CUENTA</span>
+          </div>
+        </div>
+        <div *ngIf="loginModal==1" class="col-md-9 content-login">
+          NOELIA ERES UNA GUARRA
+        </div>
+        <div *ngIf="registerModal==1" class="col-md-9 content-register">
+          NOELIA SIGES SIENDO UNA GUARRA
+        </div>
+      </div>
+    </div>  
+  </div>
+</ng-template>
 
 

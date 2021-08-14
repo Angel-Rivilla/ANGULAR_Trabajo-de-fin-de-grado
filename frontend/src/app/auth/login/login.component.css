@@ -1,3 +1,162 @@
 .p-1 {
     padding: 100%;
 }
+
+.material-field {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: opensans,Arial,sans-serif;
+}
+
+.material-field input {
+    outline: none;
+    font-size: 12px;
+    position: relative;
+    top: 5px;
+    box-sizing: border-box;
+    float: left;
+    border: none;
+    color: #333;
+    background: 0 0;
+    height: 43px;
+    padding: 10px;
+    width: 100%;
+    box-shadow: none;
+    z-index: 100;
+    font-family: opensans,Arial,sans-serif;
+}
+
+.material__required {
+    margin-left: 2px;
+    color: #d90000;
+}
+
+.material-row {
+    font-family: opensans,Arial,sans-serif;
+}
+
+.remember-me {
+    font-family: opensans,Arial,sans-serif;
+    font-size: 13.2px;
+}
+
+.material-required-info {
+    font-family: opensans,Arial,sans-serif;
+    float: right;
+    text-align: center;
+    color: #ababab;
+    font-size: 13.2px;
+}
+
+.button, .button.button--facebook {
+    background: #d90000;
+    color: #fff;
+    box-shadow: 0 2px 0 0 #bc0000;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+    border: none;
+    text-shadow: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.button--large {
+    padding: 13px 18px;
+    font-size: 15px;
+}
+
+.recover-password {
+    font-family: opensans,Arial,sans-serif;
+    color: #979797;
+    font-size: 12px;
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.spliter.spliter--with-seps {
+    background: 0 0;
+    height: auto;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spliter {
+    width: 100%;
+    height: 1px;
+    background: #ddd;
+}
+
+.spliter__sep {
+    height: 1px;
+    width: 200px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 15px;
+    background: #ddd;
+}
+
+.spliter__middle {
+    font-size: 12px;
+    color: #ddd;
+    font-family: opensans,Arial,sans-serif;
+    text-transform: uppercase;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.label-unique-email {
+    position: absolute;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 0 10px;
+    pointer-events: none;
+    transition: .1s ease all;
+    left: 0;
+    top: 14px;
+    color: #ababab;
+}
+
+.label-js-email {
+    position: absolute;
+    font-size: 10px;
+    text-transform: uppercase;
+    padding: 0 10px;
+    pointer-events: none;
+    transition: .1s ease all;
+    left: 0;
+    top: 7px;
+    color: #ababab;
+}
+
+.label-unique-password {
+    position: absolute;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 0 10px;
+    pointer-events: none;
+    transition: .1s ease all;
+    left: 0;
+    top: 14px;
+    color: #ababab;
+}
+
+.label-js-password {
+    position: absolute;
+    font-size: 10px;
+    text-transform: uppercase;
+    padding: 0 10px;
+    pointer-events: none;
+    transition: .1s ease all;
+    left: 0;
+    top: 7px;
+    color: #ababab;
+}

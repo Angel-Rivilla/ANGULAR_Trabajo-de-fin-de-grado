@@ -76,10 +76,10 @@
           <div class="login-top-container col-auto">
             <div class="login-links-holder w-100">
               <span *ngIf = "!isLogged" class="login-links-holder-left">
-                <a type="button" (click)="mLogin(modalLogin)" style="margin-top: 3px" id="login__link" class="login-links-holder__link">Identificarse</a>
+                <a type="button" (click)="registerModal = 0; loginModal = 1; mLogin(modalLogin)" style="margin-top: 3px" id="login__link" class="login-links-holder__link">Identificarse</a>
               </span>
               <span *ngIf = "!isLogged" class="login-links-holder-right">
-                <a type="button" (click)="mLogin(modalLogin)" style="margin-top: 3px" id="register__link" class="login-links-holder">Crear Cuenta</a>
+                <a type="button" (click)="registerModal = 1; loginModal = 0; mLogin(modalLogin)" style="margin-top: 3px" id="register__link" class="login-links-holder">Crear Cuenta</a>
               </span>
               <span *ngIf = "isLogged" class="login-links-holder-right">
                 <a (click) = "onLogout()" style="margin-top: 3px" id="logout__link" class="login-links-holder">Cerrar Sesión</a>
@@ -106,24 +106,97 @@
 <ng-template #modalLogin let-modal>
   <div class="contenedor">
     <div class="menu-login">
-      <div class="row">
+      <div *ngIf="isLogged == false" class="row">
         <div class="col-md-3">
-          <div class="row titleLogin text-center">
-            <span style="margin-top: 50px" type="button" (click)="loginModal = 1; registerModal = 0">IDENTIFICARSE</span>
+          <div type="button" (click)="loginModal = 1; registerModal = 0" [ngClass]="loginModal == 1 ? 'row titleLoginW text-center': 'row titleLogin text-center'">
+            <span style="margin-top: 50px">IDENTIFICARSE</span>
           </div>
-          <div class="row titleRegister text-center">
-            <span style="margin-top: 50px" type="button" (click)="loginModal = 0; registerModal = 1">NUEVA CUENTA</span>
+          <div type="button" (click)="loginModal = 0; registerModal = 1" [ngClass]="registerModal == 1 ? 'row titleRegisterW text-center': 'row titleRegister text-center'">
+            <span style="margin-top: 50px">NUEVA CUENTA</span>
           </div>
         </div>
         <div *ngIf="loginModal==1" class="col-md-9 content-login">
-          NOELIA ERES UNA GUARRA
+          <div class="authentication__login">
+            <div class="login-form">
+              <div (click)="modal.dismiss()" class="popup_close_button">
+                <i class="fal fa-times"></i>
+              </div>
+              <app-login></app-login>
+              <div (click)="modal.dismiss(); modalForgetPassword(forgetPassword)" class="recover-password">
+                  ¿Has olvidado tu contraseña?
+              </div>
+
+              <div class="spliter spliter--with-seps">
+                  <div class="spliter__sep"></div>
+                  <div class="spliter__middle"></div>
+                  <div class="spliter__sep"></div>
+              </div>
+            </div>
+          </div>
         </div>
         <div *ngIf="registerModal==1" class="col-md-9 content-register">
           NOELIA SIGES SIENDO UNA GUARRA
+        </div>
+      </div>
+      <div *ngIf="isLogged == true" class="row">
+        <div (click)="modal.dismiss()" class="popup_close_button">
+          <i class="fal fa-times"></i>
         </div>
       </div>
     </div>  
   </div>
 </ng-template>
 
+<ng-template #forgetPassword let-modal>
+  <span class="titleModalForgetPassword">Solicitar nueva contraseña</span>
+  <div class="col-md-12">
+  
+      <div class="login-form">
+        <div (click)="modal.dismiss()" class="popup_close_button">
+          <i class="fal fa-times"></i>
+        </div>
+        <form [formGroup] ="passwordForm" (ngSubmit)="changePassword()">
+          <div style="margin: 15px;" class="material-field">
+              <label class="label-unique-email">E-mail<span class="material__required">*</span></label>
+              <span class="sublabel"></span>
+              <input
+                  id="emailModal"
+                  type="email" 
+                  formControlName="username" 
+                  required
+              />
+          </div>
+          <div style="margin-left: 4px; margin-botton: 4px" class="row mt-5">
+            <div class="col-sm-6">
+                <input 
+                    [disabled]="passwordForm.invalid" 
+                    (click)="modal.close(); modalcorrectPassword(correctPassword)"
+                    id="btnRecuperarPass" 
+                    class="button button--red button--large w-100" 
+                    type="submit" 
+                    value="Recuperar la contraseña">
+            </div>
+          </div>   
+        </form>
+      </div>
+    
+    <div class="titleModalEnd">
+      *Importante: Es posible que recibas un correo electrónico después de completar este formulario.
+    </div>
+  </div>
+</ng-template>
 
+<ng-template #correctPassword let-modal>
+    <div class="modal-header">
+        <span class="modal-title tittlePopUp">Solicitar nueva contraseña</span>
+        <mat-icon class ="close" aria-label="close" type="button" (click) ="modal.dismiss()">close</mat-icon>
+    </div>
+    
+    <div class="modal-body">
+        Se ha enviado un email. Cuando recibas tu información de usuario, sigue las indicaciones para restablecer la contraseña.
+    </div>
+
+    <div class="modal-footer">
+        *Importante: Es posible que recibas un correo electrónico después de completar este formulario.
+    </div>
+</ng-template>

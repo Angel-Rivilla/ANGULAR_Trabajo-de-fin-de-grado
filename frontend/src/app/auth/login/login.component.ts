@@ -21,10 +21,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     password: ['', [Validators.required, Validators.minLength(5)]],
   })
 
-  passwordForm = this.fb.group({
-    username: ['', [Validators.required, Validators.pattern(this.isValidEmail)]]
-  })
-  
   constructor(private authSvc: AuthService, 
               private fb: FormBuilder,
               private router: Router,
@@ -82,19 +78,4 @@ export class LoginComponent implements OnInit, OnDestroy {
       !this.loginForm.get(field)?.valid
     );
   }
-
-  changePassword(){
-    const formValue = this.passwordForm.value;
-    
-    this.subscription.add(
-      this.authSvc.forgotPassword(formValue)
-        .subscribe(
-          res => {
-            console.log(res);
-          },
-          err => console.error(err)
-        )
-      );
-  }
-
 }

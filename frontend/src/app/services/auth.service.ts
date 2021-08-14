@@ -6,6 +6,7 @@ import { catchError, map} from 'rxjs/operators';
 import { UserI, UserReset, UserResponseI} from '../interface/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
+import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 const helper = new JwtHelperService();
 
@@ -13,6 +14,8 @@ const helper = new JwtHelperService();
   providedIn: 'root',
 })
 export class AuthService {
+
+  modal: NgbModalRef | undefined;
   private loggedIn = new BehaviorSubject<boolean>(false);
   private userToken = new BehaviorSubject<string | null>(null);
   private usernameIn = new BehaviorSubject<string | null>(null);
@@ -172,6 +175,7 @@ export class AuthService {
   refreshToken(updateUser: UserResponseI){
     return this.http.post(`${environment.API_URL}/auth/refresh-token/`, updateUser);
   }
+
 }
 
 

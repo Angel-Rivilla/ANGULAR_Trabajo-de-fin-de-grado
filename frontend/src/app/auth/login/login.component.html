@@ -1,106 +1,53 @@
-<div class="col-md-4 offset-md-4">
-    <div class="card mt-3">
-        <div class="card-header bg-dark text-white text-center">
-            Identificarse
-        </div>
-        <div class="card-body">
-            <form [formGroup] = "loginForm" (ngSubmit)="onLogin()">
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-10">
-                            Username
-                            <input 
-                                type="text" 
-                                formControlName="username" 
-                                class="form-control"
-                                required
-                            />
-                        </div>
-                    </div>
-                    <mat-error *ngIf="isValidField('username')">
-                        {{ getErrorMessage('username')}}
-                    </mat-error>
+<form id="formulario" [formGroup] = "loginForm" (ngSubmit)="onLogin()">
+    <div class="form-group">
+        <div class="row mt-4">
+            <div class="material-row col-sm-12">
+                <div class="material-field">
+                    <label class="label-unique-email">E-mail<span class="material__required">*</span></label>
+                    <span class="sublabel"></span>
+                    <input
+                        id="emailModal"
+                        type="email" 
+                        formControlName="username" 
+                        required
+                    />
                 </div>
-                <div class="form-group mt-3">
-                    Password 
-                    <div class="row">
-                        <div class="col-md-10">
-                            <input 
-                                [type]="hide ? 'password' : 'text'"
-                                formControlName="password" 
-                                class="form-control"
-                                required
-                            />
-                        </div>
-                        <div class="col-md-2 mt-2 p-1">
-                            <mat-icon type ="button" (click)="hide = !hide">{{ hide ? "visibility_off" : "visibility"}}</mat-icon>
-                        </div>
-                    </div>
-                    <mat-error *ngIf="isValidField('password')">
-                        {{ getErrorMessage('password')}}
-                    </mat-error>
-                </div>
-                <button 
-                    [disabled]="loginForm.invalid" 
-                    type="submit" 
-                    class="btn-info form-control mt-3"
-                >
-                    Iniciar Sesión
-                </button>
-            </form>
-        </div>
-        <div class="card-footer">
-            <span type="button" (click)="modalForgetPassword(forgetPassword)">Forget password?</span>
-            <span>Don't have an account yet?</span>
-            <span type="button" routerLink="/register">Sign up here.</span>
-        </div>
-    </div>
-</div>
-
-<ng-template #forgetPassword let-modal>
-    <div class="modal-header">
-        <span class="modal-title tittlePopUp">Solicitar nueva contraseña</span>
-        <mat-icon class ="close" aria-label="close" type="button" (click) ="modal.dismiss()">close</mat-icon>
-    </div>
-    
-    <div class="modal-body">
-        <form [formGroup] ="passwordForm" (ngSubmit)="changePassword()">
-            <div class="form-group">
-                <input 
-                    type="email" 
-                    class="form-control" 
-                    aria-describedby="emailHelp" 
-                    placeholder="*Email" 
-                    formControlName="username"
-                    required
-                >
             </div>
-            <button 
-                [disabled]="passwordForm.invalid" 
-                (click) ="modal.close(); modalcorrectPassword(correctPassword)" 
-                type="submit" 
-                class="btn btn-primary btn-lg mt-3">
-                Recuperar la contraseña
-            </button>   
-        </form>
+        </div>
+        <div class="row mt-4">
+            <div class="material-row col-sm-12">
+                <div class="material-field">
+                    <label class="label-unique-password">Contraseña<span class="material__required">*</span></label>
+                    <input 
+                        id="passwordModal"
+                        [type]="hide ? 'password' : 'text'"
+                        formControlName="password" 
+                        class="form-control"
+                        required
+                    />
+                    <mat-icon type ="button" (click)="hide = !hide">{{ hide ? "visibility_off" : "visibility"}}</mat-icon>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-sm-6 margin-botton--small">
+                <label class="remember-me" style="float: left">
+                    <input checked="checked" type="checkbox">
+                    <span> Recordarme</span>
+                </label>
+            </div>
+            <div class="col-sm-6">
+                <div class="material-required-info">
+                    <span class="required">*</span>
+                    Campos obligatorios
+                </div>
+            </div>
+        </div>
+        <div class="row"></div>
+        <div class="row mt-5">
+            <div class="col-sm-8 offset-sm-2">
+                <input id="btnIniciarSesion" class="button button--red button--large w-100" type="submit" value="Iniciar Sesión">
+            </div>
+        </div>
     </div>
-
-    <div class="modal-footer">
-        *Importante: Es posible que recibas un correo electrónico después de completar este formulario.
-    </div>
-</ng-template>
-
-<ng-template #correctPassword let-modal>
-    <div class="modal-header">
-        <span class="modal-title tittlePopUp">Solicitar nueva contraseña</span>
-        <mat-icon class ="close" aria-label="close" type="button" (click) ="modal.dismiss()">close</mat-icon>
-    </div>
-    
-    <div class="modal-body">
-        Se ha enviado un email. Cuando recibas tu información de usuario, sigue las indicaciones para restablecer la contraseña.
-    </div>
-
-    <div class="modal-footer">
-        *Importante: Es posible que recibas un correo electrónico después de completar este formulario.
-    </div>
-</ng-template>
+</form>

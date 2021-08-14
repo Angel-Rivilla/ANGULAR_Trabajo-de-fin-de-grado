@@ -26,6 +26,7 @@ export class AppComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.scriptSvc.loadScript('assets/js/carrousel.js');
     this.scriptSvc.loadScript('assets/js/details-product.js');
+
     this.utilsSvc.sidebarOpened$
     .pipe(takeUntil(this.destroy$))
     .subscribe((res: boolean) => (this.opened = res));

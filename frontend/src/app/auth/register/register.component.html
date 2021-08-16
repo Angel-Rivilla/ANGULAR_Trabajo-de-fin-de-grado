@@ -1,54 +1,52 @@
-<div class="col-md-4 offset-md-4">
-    <div class="card mt-3">
-        <div class="card-header bg-dark text-white text-center">
-            Nueva cuenta
-        </div>
-        <div class="card-body">
-            <form [formGroup] = "registerForm" (ngSubmit)="onRegister()">
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-10">
-                            Username
-                            <input 
-                                type="text" 
-                                formControlName="username" 
-                                class="form-control"
-                                required
-                            />
-                        </div>
-                    </div>
-                    <mat-error *ngIf="isValidField('username')">
-                        {{ getErrorMessage('username')}}
-                    </mat-error>
+<form id="formulario_register" [formGroup] = "registerForm" (ngSubmit)="onRegister()">
+    <div class="form-group">
+        <div class="row mt-4">
+            <div class="material-row col-sm-12">
+                <div class="material-field">
+                    <label class="label-unique-email">E-mail<span class="material__required">*</span></label>
+                    <span class="sublabel"></span>
+                    <input
+                        id="emailModal"
+                        type="email" 
+                        formControlName="username" 
+                        required
+                    />
                 </div>
-                <div class="form-group mt-3">
-                    Password
-                    <div class="row">
-                        <div class="col-md-10">
-                            <input 
-                                [type]="hide ? 'password' : 'text'" 
-                                formControlName="password" 
-                                class="form-control"
-                                required
-                             />
-                        </div>
-                        <div class="col-md-2 mt-2 p-1">
-                            <mat-icon type ="button" (click)="hide = !hide">{{ hide ? "visibility_off" : "visibility"}}</mat-icon>
-                        </div>
-                    </div>
-                    <mat-error *ngIf="isValidField('password')">
-                        {{ getErrorMessage('password')}}
-                    </mat-error>
-                </div>
-
-                <button type="submit" class="btn-info form-control mt-3">
-                Crear cuenta
-                </button>
-            </form>
+            </div>
         </div>
-        <div class="card-footer">
-            <span>Already have an account?</span>
-            <span type="button" routerLink="/login">Login here.</span>
+        <div class="row mt-4">
+            <div class="material-row col-sm-12">
+                <div class="material-field">
+                    <label class="label-unique-password">Contraseña<span class="material__required">*</span></label>
+                    <input 
+                        id="passwordModal"
+                        [type]="hide ? 'password' : 'text'"
+                        formControlName="password"
+                        required
+                    />
+                    <mat-icon style="margin-top: 11px; margin-left: 5px; font-size: 15px;" type ="button" (click)="hide = !hide">{{ hide ? "visibility_off" : "visibility"}}</mat-icon>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-sm-6 margin-botton--small">
+                <label class="remember-me" style="float: left">
+                    <input checked="checked" type="checkbox">
+                    <span> Recordarme</span>
+                </label>
+            </div>
+            <div class="col-sm-6">
+                <div class="material-required-info">
+                    <span class="required">*</span>
+                    Campos obligatorios
+                </div>
+            </div>
+        </div>
+        <div class="row"></div>
+        <div class="row mt-5">
+            <div class="col-sm-8 offset-sm-2">
+                <input id="btnIniciarSesion" class="button button--red button--large w-100" type="submit" value="Crear cuenta">
+            </div>
         </div>
     </div>
-</div>
+</form>

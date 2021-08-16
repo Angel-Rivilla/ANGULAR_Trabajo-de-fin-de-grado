@@ -19,9 +19,11 @@ export class HeaderComponent implements OnInit, OnDestroy{
   private isValidEmail = /\S*@\S*\.\S*/;
   isLogged = false;
   helpOpen = false;
+  openAndExit = false;
   isAdmin: string | null = null;
   loginModal = 1;
   registerModal = 0;
+  input_password: any;
 
   passwordForm = this.fb.group({
     username: ['', [Validators.required, Validators.pattern(this.isValidEmail)]]
@@ -58,6 +60,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
   onToggleSidenav(): void{
     if(this.utilsSvc.toggleAdmin == false){
+      this.router.navigate(['admin']);
       this.toggleSidenav.emit();
       this.utilsSvc.toggleAdmin = true;
     } else {
@@ -85,6 +88,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   }
 
   modalForgetPassword(contenido: any){
+    this.scriptSvc.loadScript('assets/js/login-modal.js');
     this.modal.open(contenido, {centered: true});
   }
 

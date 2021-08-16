@@ -1,4 +1,4 @@
-<div id="header">
+<div *ngIf="isAdmin != 'admin'" id="header">
   <div *ngIf="helpOpen" class="w-100 mx-auto open" id="widget-cs-row" style="display: block">
     <div class="header-container" style="height: 192px; opacity: 1">
       <div class="row" id="header_customer_support">
@@ -42,10 +42,14 @@
     <div class="row">
       <div class="col-auto">
         <div class="row">
-          <div id="the_h_menu" class="col-auto">
+          <div *ngIf="openAndExit==false" id="the_h_menu" class="col-auto">
             <div [ngClass]= "isAdmin != 'admin' ? 'disableDiv': 'enableDiv'" class="menu-btn">
-              <i (click)="onToggleSidenav()" class="fal fa-bars"></i>
-              <i class="fas fa-bars-exit"></i>
+              <i (click)="onToggleSidenav(); openAndExit = true" class="fal fa-bars"></i>
+            </div>
+          </div>
+          <div *ngIf="openAndExit==true" id="the_h_menu" class="col-auto">
+            <div style="background: silver;" [ngClass]= "isAdmin != 'admin' ? 'disableDiv': 'enableDiv'" class="menu-btn">
+              <i (click)="onToggleSidenav(); openAndExit = false" class="fal fa-times"></i>
             </div>
           </div>
           <div class="logo-container col-auto">
@@ -70,7 +74,7 @@
           </div>
           <div class="col-auto loyalty-header-container">
             <a class="loyalty-tooltip-link">
-              <span style="margin-top: 3px">Golden Club</span>
+              <span style="margin-top: 3px">Premium</span>
             </a>
           </div>
           <div class="login-top-container col-auto">
@@ -135,7 +139,26 @@
           </div>
         </div>
         <div *ngIf="registerModal==1" class="col-md-9 content-register">
-          NOELIA SIGES SIENDO UNA GUARRA
+          <div class="authentication__login">
+            <div class="login-form">
+              <div (click)="modal.dismiss()" class="popup_close_button">
+                <i class="fal fa-times"></i>
+              </div>
+                <app-register></app-register>
+              <div class="mt-4 row">
+                <div class="col-md-12">
+                  <div class="spliter spliter--with-seps">
+                      <div class="spliter"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <span style="font-size: 10px">Si tienes alguna cuestión, no dudes en contactarnos. Estamos siempre a tu disposición.</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div *ngIf="isLogged == true" class="row">
@@ -160,7 +183,7 @@
               <label class="label-unique-email">E-mail<span class="material__required">*</span></label>
               <span class="sublabel"></span>
               <input
-                  id="emailModal"
+                  id="emailModalReset"
                   type="email" 
                   formControlName="username" 
                   required
@@ -187,16 +210,25 @@
 </ng-template>
 
 <ng-template #correctPassword let-modal>
-    <div class="modal-header">
-        <span class="modal-title tittlePopUp">Solicitar nueva contraseña</span>
-        <mat-icon class ="close" aria-label="close" type="button" (click) ="modal.dismiss()">close</mat-icon>
-    </div>
+  <span class="titleModalForgetPassword">Solicitar nueva contraseña</span>
+  <div class="col-md-12">
+      <div class="login-form">
+        <div (click)="modal.dismiss()" class="popup_close_button">
+          <i class="fal fa-times"></i>
+        </div>
+        <div class="row">
+          <div class="col-md-2 titleVerify">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="col-md-10 titleVerifyText">
+            Se ha enviado un email. Cuando recibas tu información de usuario, sigue las indicaciones para restablecer tu contraseña.
+          </div>
+        </div>
+      </div>
     
-    <div class="modal-body">
-        Se ha enviado un email. Cuando recibas tu información de usuario, sigue las indicaciones para restablecer la contraseña.
+    <div class="titleModalEnd">
+      *Importante: Es posible que recibas un correo electrónico después de completar este formulario.
     </div>
-
-    <div class="modal-footer">
-        *Importante: Es posible que recibas un correo electrónico después de completar este formulario.
-    </div>
+  </div>
+    
 </ng-template>

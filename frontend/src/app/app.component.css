@@ -28,3 +28,15 @@ mat-sidenav-container {
     width: 100%;
     background-color: #eee;
 }
+
+mat-toolbar{
+    background-color: #252424;
+    color: white;
+    font-size: 17px;
+    font-family: proxima-nova,Arial,sans-serif;
+    border-bottom: 1px solid #ddd;
+}
+
+mat-toolbar span{
+    margin-left: 60px;
+}

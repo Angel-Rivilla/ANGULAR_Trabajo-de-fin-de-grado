@@ -1,4 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { fromEvent } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
 import { ScriptService } from 'src/app/services/script.service';
@@ -15,12 +16,14 @@ export class ProductsComponent implements OnInit {
   user$: string | null | undefined;
   tokenReset$: string | null | undefined;
   isLogged = false
+  fila: any;
 
   products: any = [];
 
   constructor(private productSvc: ProductService,
               public authSvc: AuthService,
-              private scriptSvc: ScriptService) { }
+              private scriptSvc: ScriptService) { 
+              }
   
   ngOnInit(): void {
     this.getProducts();
@@ -38,5 +41,5 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-
+  
 }

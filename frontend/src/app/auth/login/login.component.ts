@@ -13,6 +13,7 @@ import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   hide = true;
+  checkedInput = true;
   private isValidEmail = /\S*@\S*\.\S*/;
   private subscription: Subscription = new Subscription();
 

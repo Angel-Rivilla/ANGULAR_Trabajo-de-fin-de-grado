@@ -21,11 +21,10 @@
                     <input 
                         id="passwordModal"
                         [type]="hide ? 'password' : 'text'"
-                        formControlName="password" 
-                        class="form-control"
+                        formControlName="password"
                         required
                     />
-                    <mat-icon type ="button" (click)="hide = !hide">{{ hide ? "visibility_off" : "visibility"}}</mat-icon>
+                    <mat-icon style="margin-top: 11px; margin-left: 5px; font-size: 15px;" type ="button" (click)="hide = !hide">{{ hide ? "visibility_off" : "visibility"}}</mat-icon>
                 </div>
             </div>
         </div>

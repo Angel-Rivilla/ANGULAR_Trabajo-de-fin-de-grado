@@ -236,8 +236,14 @@ a {
     justify-content: flex-end;
 }
 
+
 #header_search_bar .show-mini-cart:visited, #header_search_bar .show-mini-cart:link {
     color: #fff;
+}
+
+.show-mini-cart{
+    align-items: center;
+    margin-left: 3px
 }
 
 #header_search_bar .top-minicart-info {

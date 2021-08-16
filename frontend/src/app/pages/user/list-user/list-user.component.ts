@@ -8,9 +8,11 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ListUserComponent implements OnInit {
 
+  usersOpen= true;
   @HostBinding('class') classes = 'row';
 
   users: any = [];
+  totalUsers = 0;
 
   constructor(private userSvc: UserService) { }
   
@@ -22,9 +24,11 @@ export class ListUserComponent implements OnInit {
     this.userSvc.getUsers().subscribe(
       res => {
         this.users = res;
+        this.totalUsers = res.length;
       },
       err=> console.error(err)
     );
+    
   }
 
   deleteUser(id: string){

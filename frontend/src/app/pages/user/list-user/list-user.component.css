@@ -1,0 +1,81 @@
+.btn-delete{
+    background: #d90000;
+    color: #fff;
+    box-shadow: 0 2px 0 0 #bc0000;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+    border: none;
+    text-shadow: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.btn-edit{
+    background: #045fe7ee;
+    color: #fff;
+    box-shadow: 0 2px 0 0 #045fe7ee;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+    border: none;
+    text-shadow: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.btn-delete:hover{
+    cursor: pointer;
+    transform: scale(1.04);
+}
+
+.btn-edit:hover{
+    cursor: pointer;
+    transform: scale(1.04);
+}
+
+.box-edit-shadow{
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 5%), 0 1px 2px 0 rgb(0 0 0 / 10%); 
+    border-radius: 2px; 
+    border: 1px solid #ddd; 
+    font-size: 10px
+}
+
+.box-cards{
+    border: 1px solid #ddd; 
+    font-size: 10px;
+}
+
+.box-cards:hover{
+    cursor: pointer;
+    transform: scale(1.04);
+}
+
+.box-cards-user{
+    background-color: #078dccee;
+    height: 10vw;
+}
+
+.box-cards-users{
+    background-color: #04e775ee;
+    height: 10vw;
+}
+
+.text-end i {
+    font-size: 10px;
+    color: black;
+    font-weight: bold;
+}
+
+.card-span{
+    font-size: 15px;
+    color:rgb(0 0 0 / 50%);
+    font-weight: 500;
+    font-family: proxima-nova,Arial,sans-serif;
+}
+
+.logo-container img{
+    width: 125px;
+}
